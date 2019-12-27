@@ -1,0 +1,51 @@
+@import 'config';
+@import 'reset';
+
+.App {
+    background-color: $sec-color;
+}
+
+/* BUTTONS */
+
+.standard-button {
+    padding: 0.5rem 0.8rem;
+    background-color: $standard-button-color;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+        box-shadow: 0.2rem 0.3rem $sec-color;
+        -webkit-transition: all 0.3s ease;
+        -o-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+    }
+
+    i {
+        color: $sec-color;
+        margin-right: 0.3rem;
+    }
+}
+
+.nav-button {
+    @extend .standard-button;
+    margin-right: 0.5rem;
+}
+
+/* HEADER */
+
+.main-header {
+    padding: 2rem 4rem 0 4rem;
+    display: flex;
+    justify-content: space-around;
+    background-color: $background-color;
+
+    &-title {
+
+    }
+
+    &-options {
+        display: flex;
+        justify-content: flex-end;
+        float: right;
+    }
+}
