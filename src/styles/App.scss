@@ -8,39 +8,58 @@
 /* BUTTONS */
 
 .standard-button {
-    padding: 0.5rem 0.8rem;
+    @include main-font;
+    padding: 0.5rem 0.6rem;
     background-color: $standard-button-color;
     border: none;
     cursor: pointer;
 
-    &:hover {
-        box-shadow: 0.2rem 0.3rem $sec-color;
-        -webkit-transition: all 0.3s ease;
-        -o-transition: all 0.3s ease;
-        transition: all 0.3s ease;
-    }
-
     i {
         color: $sec-color;
-        margin-right: 0.3rem;
+        margin-right: 0.5rem;
     }
 }
 
 .nav-button {
     @extend .standard-button;
     margin-right: 0.5rem;
+    display: flex;
+    align-items: center;
+
+    &:hover {
+        @include box-shadow-h;
+    }
+}
+
+.home-button {
+    @extend .standard-button;
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+    &:hover {
+        @include border-left-h;
+    }
+}
+
+/* Link */
+
+a {
+    text-decoration: none;
 }
 
 /* HEADER */
 
 .main-header {
-    padding: 2rem 4rem 0 4rem;
+    padding: 2rem 3rem;
     display: flex;
     justify-content: space-around;
     background-color: $background-color;
 
     &-title {
-
+        h4 {
+            @include big-font;
+        }
     }
 
     &-options {
@@ -48,4 +67,10 @@
         justify-content: flex-end;
         float: right;
     }
+}
+
+/* HOME SECTION */
+
+.home-section {
+    background-color: $background-color;
 }

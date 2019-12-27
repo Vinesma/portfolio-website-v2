@@ -1,4 +1,36 @@
+/* VARIABLES */
+
 $background-color: #5cdacf;
 $main-color: #fff;
 $standard-button-color: #fff;
 $sec-color: #ec5353;
+
+/* FONTS */
+
+@mixin big-font{
+    font-family: 'Lexend Mega', sans-serif;
+    font-size: 1.8rem;
+    color: $main-color;
+}
+
+@mixin main-font {
+    font-family: 'Lexend Deca', sans-serif;
+    font-size: 1rem;
+    color: $sec-color;
+}
+
+/* ANIMATION */
+
+@mixin box-shadow-h {
+    box-shadow: 0.2rem 0.3rem $sec-color;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+@mixin border-left-h {
+    border-left: $sec-color 0.5rem solid;
+    -webkit-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
