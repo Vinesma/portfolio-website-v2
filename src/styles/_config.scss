@@ -15,7 +15,13 @@ $sec-color: #ec5353;
 
 @mixin main-font {
     font-family: 'Lexend Deca', sans-serif;
-    font-size: 1rem;
+    font-size: 1.0rem;
+    color: $sec-color;
+}
+
+@mixin sec-font {
+    font-family: 'Lexend Deca', sans-serif;
+    font-size: 1.3rem;
     color: $sec-color;
 }
 

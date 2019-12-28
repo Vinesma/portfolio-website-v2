@@ -4,7 +4,7 @@ import {
     Link 
 } from 'react-router-dom';
 
-function Header() {
+function Header(props) {
     return (
         <header className="main-header">
             <div className="main-header-title">
@@ -12,30 +12,23 @@ function Header() {
             </div>
             <div className="main-header-options">
                 <Router>
+                    { props.headerItems.map(item => {
+                        return(
+                            <Link key={item.name} to={item.name.toLowerCase()}>
+                                <button className="nav-button">
+                                    <i className={item.icon} />
+                                    {item.name}
+                                </button>
+                            </Link>
+                        );
+                    })
+                    }
                     <a href="mailto:vinesma.work@gmail.com">
                         <button className="nav-button">
-                            <i class="fas fa-envelope" />
+                            <i className="fas fa-envelope" />
                             Contact
                         </button>
                     </a>
-                    <Link to="/websites">
-                        <button className="nav-button">
-                            <i class="fas fa-file" />
-                            Websites
-                        </button>
-                    </Link>
-                    <Link to="/skills">
-                        <button className="nav-button">
-                            <i class="fas fa-tools" />
-                            Skills
-                        </button>
-                    </Link>
-                    <Link to="/gallery">
-                        <button className="nav-button">
-                            <i class="fas fa-image" />
-                            Gallery
-                        </button>
-                    </Link>
                 </Router>
             </div>
         </header>

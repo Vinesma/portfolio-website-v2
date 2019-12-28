@@ -8,25 +8,34 @@ import {
 } from 'react-router-dom';
 
 function App() {
+
+  const headerItems = [
+    {
+      name: 'Projects',
+      icon: 'fas fa-file',
+    },
+    {
+      name: 'Skills',
+      icon: 'fas fa-tools',
+    },
+    {
+      name: 'Gallery',
+      icon: 'fas fa-image',
+    },
+  ];
+
   return (
     <Router>
       <div className="App">
-        <Header />
+        <Header headerItems={ headerItems }/>
         <Route exact path="/" render={props => (
           <Fragment>
             <Home />
           </Fragment>
-        )}>
-        </Route>
-        <Route path="/websites">
-
-        </Route>
-        <Route path="/skills">
-
-        </Route>
-        <Route path="/gallery">
-
-        </Route>
+        )} />
+        <Route path="/websites" /* render={} */ />
+        <Route path="/skills" /* render={} */ />
+        <Route path="/gallery" /* render={} */ />
       </div>
     </Router>
   );

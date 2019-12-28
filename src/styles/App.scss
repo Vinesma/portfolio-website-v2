@@ -2,13 +2,19 @@
 @import 'reset';
 
 .App {
-    background-color: $sec-color;
+    background-color: $background-color;
+    height: 100vh;
+}
+
+/* LINKS */
+
+a {
+    text-decoration: none;
 }
 
 /* BUTTONS */
 
 .standard-button {
-    @include main-font;
     padding: 0.5rem 0.6rem;
     background-color: $standard-button-color;
     border: none;
@@ -21,8 +27,9 @@
 }
 
 .nav-button {
+    @include main-font;
     @extend .standard-button;
-    margin-right: 0.5rem;
+    margin-left: 0.5rem;
     display: flex;
     align-items: center;
 
@@ -32,6 +39,7 @@
 }
 
 .home-button {
+    @include sec-font;
     @extend .standard-button;
     width: 100%;
     display: flex;
@@ -42,19 +50,12 @@
     }
 }
 
-/* Link */
-
-a {
-    text-decoration: none;
-}
-
 /* HEADER */
 
 .main-header {
-    padding: 2rem 3rem;
+    padding: 4rem 3rem 0 3rem;
     display: flex;
-    justify-content: space-around;
-    background-color: $background-color;
+    justify-content: space-between;
 
     &-title {
         h4 {
@@ -72,5 +73,43 @@ a {
 /* HOME SECTION */
 
 .home-section {
-    background-color: $background-color;
+    margin-top: 10rem;
+    padding: 0 3rem 0 3rem;
+    display: flex;
+    justify-content: space-between;
+
+    &-image{
+        img {
+            max-width: 100%;
+            height: 100%;
+        }
+    }
+
+    &-links{
+        display: flex;
+        flex-wrap: wrap;
+        align-content: space-between;
+        margin-left: 1rem;
+        width: 70%;
+
+        a {
+            width: 100%;
+            
+            button .fa-github{
+                margin-right: 0.6rem;
+            }
+
+            button .fa-linkedin{
+                margin-right: 0.8rem;
+            }
+
+            button .fa-twitter{
+                margin-right: 0.5rem;
+            }
+
+            button .fa-deviantart{
+                margin-right: 1.4rem;
+            }
+        }
+    }
 }
