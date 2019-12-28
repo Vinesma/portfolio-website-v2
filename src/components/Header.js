@@ -12,16 +12,14 @@ function Header(props) {
             </div>
             <div className="main-header-options">
                 <Router>
-                    { props.headerItems.map(item => {
-                        return(
-                            <Link key={item.name} to={item.name.toLowerCase()}>
-                                <button className="nav-button">
-                                    <i className={item.icon} />
-                                    {item.name}
-                                </button>
-                            </Link>
-                        );
-                    })
+                    { props.headerItems.map(item => (
+                        <Link key={item.name} to={item.name.toLowerCase()}>
+                            <button className="nav-button">
+                                <i className={item.icon} />
+                                {item.name === '/' ? 'Home' : item.name} 
+                            </button>
+                        </Link>
+                    ))
                     }
                     <a href="mailto:vinesma.work@gmail.com">
                         <button className="nav-button">

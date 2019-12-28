@@ -1,15 +1,15 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import './styles/App.scss';
 import Header from './components/Header';
 import Home from './components/Home';
+import Gallery from './components/Gallery';
 import { 
   BrowserRouter as Router, 
   Route 
 } from 'react-router-dom';
 
 function App() {
-
-  const headerItems = [
+  const [headerItems, setHeaderItems] = useState([
     {
       name: 'Projects',
       icon: 'fas fa-file',
@@ -22,20 +22,20 @@ function App() {
       name: 'Gallery',
       icon: 'fas fa-image',
     },
-  ];
+  ]);
 
   return (
     <Router>
       <div className="App">
-        <Header headerItems={ headerItems }/>
         <Route exact path="/" render={props => (
           <Fragment>
+            <Header headerItems={ headerItems }/>
             <Home />
           </Fragment>
         )} />
         <Route path="/websites" /* render={} */ />
         <Route path="/skills" /* render={} */ />
-        <Route path="/gallery" /* render={} */ />
+        <Route path="/gallery" component={Gallery}/>
       </div>
     </Router>
   );
