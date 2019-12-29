@@ -21,7 +21,19 @@ a {
     cursor: pointer;
 
     i {
-        color: $sec-color;
+        color: $sec-button-color;
+        margin-right: 0.5rem;
+    }
+}
+
+.active-button {
+    padding: 0.5rem 0.6rem;
+    background-color: $sec-button-color;
+    border: none;
+    cursor: pointer;
+
+    i {
+        color: $standard-button-color;
         margin-right: 0.5rem;
     }
 }
@@ -36,6 +48,14 @@ a {
     &:hover {
         @include box-shadow-h;
     }
+}
+
+.nav-button-active {
+    @include main-font-inverted;
+    @extend .active-button;
+    margin-left: 0.5rem;
+    display: flex;
+    align-items: center;
 }
 
 .home-button {

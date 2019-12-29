@@ -13,33 +13,58 @@ class App extends Component {
   state = {
     headerItems: [
         {
+          name: '/',
+          icon: 'fas fa-home',
+          active: false,
+        },
+        {
           name: 'Projects',
           icon: 'fas fa-file',
+          active: false,
         },
         {
           name: 'Skills',
           icon: 'fas fa-tools',
+          active: false,
         },
         {
           name: 'Gallery',
           icon: 'fas fa-image',
+          active: false,
         },
     ],
   }
 
-  updateHeaderItems = (name, index) => {
-    if (name === '/') {
-      this.setState({ headerItems: [...this.state.headerItems.slice(1)] });
-    } else {
-      this.setState({ headerItems: [ {name: '/', icon: 'fas fa-home'}, ...this.state.headerItems ] });
+  componentDidMount = () => {
+    const newHeader = this.state.headerItems;
+    switch(window.location.pathname){
+      case '/':
+        newHeader.forEach(item => item.active = false);
+        newHeader[0].active = true;
+        break;
+      case '/projects':
+        newHeader.forEach(item => item.active = false);
+        newHeader[1].active = true;
+        break;
+      case '/skills':
+        newHeader.forEach(item => item.active = false);
+        newHeader[2].active = true;
+        break;
+      case '/gallery':
+        newHeader.forEach(item => item.active = false);
+        newHeader[3].active = true;
+        break;
+      default:
+        break;
     }
+    this.setState({ headerItems: newHeader });
   }
 
   render() {
     return (
       <Router>
         <div className="App">
-          <Header headerItems={ this.state.headerItems } updateHeaderItems={this.updateHeaderItems}/>
+          <Header headerItems={ this.state.headerItems }/>
           <Switch>
             <Route exact path="/">
               <Home />
@@ -49,6 +74,7 @@ class App extends Component {
             <Route path="/gallery">
               <Gallery />
             </Route>
+            <Route /* component={404} */ ></Route>
           </Switch>
         </div>
       </Router>

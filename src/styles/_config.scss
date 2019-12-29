@@ -3,6 +3,7 @@
 $background-color: #5cdacf;
 $main-color: #fff;
 $standard-button-color: #fff;
+$sec-button-color: #ec5353;
 $sec-color: #ec5353;
 
 /* FONTS */
@@ -17,6 +18,12 @@ $sec-color: #ec5353;
     font-family: 'Lexend Deca', sans-serif;
     font-size: 1.0rem;
     color: $sec-color;
+}
+
+@mixin main-font-inverted {
+    font-family: 'Lexend Deca', sans-serif;
+    font-size: 1.0rem;
+    color: $main-color;
 }
 
 @mixin sec-font {

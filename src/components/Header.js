@@ -12,9 +12,9 @@ function Header(props) {
             </div>
             <div className="main-header-options">
                 <Router>
-                    { props.headerItems.map((item, index) => (
+                    { props.headerItems.map(item => (
                         <Link key={item.name} to={item.name.toLowerCase()}>
-                            <button className="nav-button" onClick={() => props.updateHeaderItems(item.name, index)}>
+                            <button className={ item.active ? 'nav-button-active' : 'nav-button'}>
                                 <i className={item.icon} />
                                 {item.name === '/' ? 'Home' : item.name}
                             </button>
