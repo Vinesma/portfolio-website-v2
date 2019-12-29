@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import './styles/App.scss';
 import Header from './components/Header';
 import Home from './components/Home';
@@ -9,54 +9,51 @@ import {
   Switch, 
 } from 'react-router-dom';
 
-function App() {
-  const [headerItems, setHeaderItems] = useState(
-    [
-      {
-        name: 'Projects',
-        icon: 'fas fa-file',
-      },
-      {
-        name: 'Skills',
-        icon: 'fas fa-tools',
-      },
-      {
-        name: 'Gallery',
-        icon: 'fas fa-image',
-      },
-    ]
-  );
-
-  function handleHeaderItems(itemName) {
-    if (itemName === '/') {
-      setHeaderItems(prevHeaderItems => prevHeaderItems.shift());
-    } else {
-      setHeaderItems(prevHeaderItems => {
-        const updatedValues = [ ...prevHeaderItems ];
-        updatedValues.unshift({ name: '/', icon: 'fas fa-home' });
-        return { ...prevHeaderItems, ...updatedValues };
-      });
-    }
-    
+class App extends Component {
+  state = {
+    headerItems: [
+        {
+          name: 'Projects',
+          icon: 'fas fa-file',
+        },
+        {
+          name: 'Skills',
+          icon: 'fas fa-tools',
+        },
+        {
+          name: 'Gallery',
+          icon: 'fas fa-image',
+        },
+    ],
   }
 
-  return (
-    <Router>
-      <div className="App">
-        <Header headerItems={ headerItems } handleHeaderItems={handleHeaderItems}/>
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/websites"></Route>
-          <Route path="/skills"></Route>
-          <Route path="/gallery">
-            <Gallery />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
-  );
+  updateHeaderItems = (name, index) => {
+    if (name === '/') {
+      this.setState({ headerItems: [...this.state.headerItems.slice(1)] });
+    } else {
+      this.setState({ headerItems: [ {name: '/', icon: 'fas fa-home'}, ...this.state.headerItems ] });
+    }
+  }
+
+  render() {
+    return (
+      <Router>
+        <div className="App">
+          <Header headerItems={ this.state.headerItems } updateHeaderItems={this.updateHeaderItems}/>
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route path="/websites"></Route>
+            <Route path="/skills"></Route>
+            <Route path="/gallery">
+              <Gallery />
+            </Route>
+          </Switch>
+        </div>
+      </Router>
+    );
+  }
 }
 
 export default App;
