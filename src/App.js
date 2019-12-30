@@ -11,6 +11,7 @@ import {
 
 class App extends Component {
   state = {
+    headerTitle: '',
     headerItems: [
         {
           name: '/',
@@ -41,19 +42,32 @@ class App extends Component {
     switch(window.location.pathname){
       case '/':
         newHeader[0].active = true;
+        this.setState({ headerTitle: 'PORTFOLIO - VINESMA' });
         break;
       case '/projects':
         newHeader[1].active = true;
+        this.setState({ headerTitle: 'PROJECTS' });
         break;
       case '/skills':
         newHeader[2].active = true;
+        this.setState({ headerTitle: 'SKILLS' });
         break;
       case '/gallery':
         newHeader[3].active = true;
+        this.setState({ headerTitle: 'GALLERY' });
         break;
       default:
         break;
     }
+    this.setState({ headerItems: newHeader });
+  }
+  
+  updateHeaderItems = (name, index) => {
+    const newHeader = this.state.headerItems;
+    newHeader.forEach(item => item.active = false);
+    newHeader[index].active = true;
+    
+    this.setState({ headerTitle: name === '/' ? 'PORTFOLIO - VINESMA' : name.toUpperCase() })
     this.setState({ headerItems: newHeader });
   }
 
@@ -61,7 +75,11 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Header headerItems={ this.state.headerItems }/>
+          <Header 
+          headerItems={ this.state.headerItems }
+          headerTitle={ this.state.headerTitle }
+          updateHeaderItems={this.updateHeaderItems}
+          />
           <Switch>
             <Route exact path="/">
               <Home />
