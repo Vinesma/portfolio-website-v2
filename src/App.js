@@ -3,6 +3,7 @@ import './styles/App.scss';
 import Header from './components/Header';
 import Home from './components/Home';
 import Gallery from './components/Gallery';
+import Projects from './components/Projects';
 import { 
   BrowserRouter as Router, 
   Route,
@@ -84,7 +85,9 @@ class App extends Component {
             <Route exact path="/">
               <Home />
             </Route>
-            <Route path="/websites"></Route>
+            <Route path="/projects">
+              <Projects />
+            </Route>
             <Route path="/skills"></Route>
             <Route path="/gallery">
               <Gallery />

@@ -1,0 +1,61 @@
+/* BUTTONS */
+
+.standard-button {
+    padding: 0.5rem 0.6rem;
+    background-color: $standard-button-color;
+    border: none;
+    cursor: pointer;
+
+    i {
+        color: $sec-button-color;
+        margin-right: 0.5rem;
+    }
+}
+
+.nav-button {
+    @include main-font;
+    @extend .standard-button;
+    display: flex;
+    align-items: center;
+
+    &:hover {
+        @include box-shadow-h;
+    }
+}
+
+.active-button {
+    padding: 0.5rem 0.6rem;
+    background-color: $sec-button-color;
+    border: none;
+    cursor: pointer;
+
+    i {
+        color: $standard-button-color;
+        margin-right: 0.5rem;
+    }
+}
+
+.nav-button-active {
+    @include main-font-inverted;
+    @extend .active-button;
+    display: flex;
+    align-items: center;
+}
+
+.bold-text-button {
+    @extend .nav-button;
+    font-weight: bold;
+    margin-left: 0;
+}
+
+.home-button {
+    @include sec-font;
+    @extend .standard-button;
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+    &:hover {
+        @include border-left-h;
+    }
+}

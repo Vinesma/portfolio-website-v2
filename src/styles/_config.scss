@@ -5,6 +5,7 @@ $main-color: #fff;
 $standard-button-color: #fff;
 $sec-button-color: #ec5353;
 $sec-color: #ec5353;
+$text-color: #494949;
 
 /* FONTS */
 
@@ -28,7 +29,7 @@ $sec-color: #ec5353;
 
 @mixin sec-font {
     font-family: 'Lexend Deca', sans-serif;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     color: $sec-color;
 }
 
@@ -43,6 +44,13 @@ $sec-color: #ec5353;
 
 @mixin border-left-h {
     border-left: $sec-color 0.5rem solid;
+    -webkit-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+
+@mixin color-change-sec {
+    background-color: $sec-color;
     -webkit-transition: all 0.2s ease;
     -o-transition: all 0.2s ease;
     transition: all 0.2s ease;

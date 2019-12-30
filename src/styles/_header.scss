@@ -1,0 +1,19 @@
+/* HEADER */
+
+.main-header {
+    padding: 4rem 3rem 0 3rem;
+    display: flex;
+    justify-content: space-between;
+
+    &-title {
+        h4 {
+            @include big-font;
+        }
+    }
+
+    &-options {
+        width: 43%;
+        display: flex;
+        justify-content: space-between;
+    }
+}
