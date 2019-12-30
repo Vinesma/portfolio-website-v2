@@ -3,7 +3,7 @@
 
 .App {
     background-color: $background-color;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 /* LINKS */
@@ -26,6 +26,17 @@ a {
     }
 }
 
+.nav-button {
+    @include main-font;
+    @extend .standard-button;
+    display: flex;
+    align-items: center;
+
+    &:hover {
+        @include box-shadow-h;
+    }
+}
+
 .active-button {
     padding: 0.5rem 0.6rem;
     background-color: $sec-button-color;
@@ -38,24 +49,17 @@ a {
     }
 }
 
-.nav-button {
-    @include main-font;
-    @extend .standard-button;
-    margin-left: 0.5rem;
-    display: flex;
-    align-items: center;
-
-    &:hover {
-        @include box-shadow-h;
-    }
-}
-
 .nav-button-active {
     @include main-font-inverted;
     @extend .active-button;
-    margin-left: 0.5rem;
     display: flex;
     align-items: center;
+}
+
+.bold-text-button {
+    @extend .nav-button;
+    font-weight: bold;
+    margin-left: 0;
 }
 
 .home-button {
@@ -84,17 +88,20 @@ a {
     }
 
     &-options {
+        width: 43%;
         display: flex;
-        justify-content: flex-end;
-        float: right;
+        justify-content: space-between;
     }
 }
 
 /* HOME SECTION */
 
-.home-section {
-    margin-top: 10rem;
+section {
+    margin-top: 15vh;
     padding: 0 3rem 0 3rem;
+}
+
+.home-section {
     display: flex;
     justify-content: space-between;
 
@@ -131,5 +138,16 @@ a {
                 margin-right: 1.4rem;
             }
         }
+    }
+}
+
+/* GALLERY SECTION */
+
+.gallery-section{
+    &-nav{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
     }
 }
