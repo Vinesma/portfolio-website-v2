@@ -37,21 +37,18 @@ class App extends Component {
 
   componentDidMount = () => {
     const newHeader = this.state.headerItems;
+    newHeader.forEach(item => item.active = false);
     switch(window.location.pathname){
       case '/':
-        newHeader.forEach(item => item.active = false);
         newHeader[0].active = true;
         break;
       case '/projects':
-        newHeader.forEach(item => item.active = false);
         newHeader[1].active = true;
         break;
       case '/skills':
-        newHeader.forEach(item => item.active = false);
         newHeader[2].active = true;
         break;
       case '/gallery':
-        newHeader.forEach(item => item.active = false);
         newHeader[3].active = true;
         break;
       default:

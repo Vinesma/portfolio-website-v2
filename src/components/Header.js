@@ -1,8 +1,5 @@
 import React from 'react';
-import { 
-    BrowserRouter as Router, 
-    Link 
-} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function Header(props) {
     return (
@@ -11,7 +8,6 @@ function Header(props) {
                 <h4>PORTFOLIO - VINESMA</h4>
             </div>
             <div className="main-header-options">
-                <Router>
                     { props.headerItems.map(item => (
                         <Link key={item.name} to={item.name.toLowerCase()}>
                             <button className={ item.active ? 'nav-button-active' : 'nav-button'}>
@@ -27,7 +23,6 @@ function Header(props) {
                             Contact
                         </button>
                     </a>
-                </Router>
             </div>
         </header>
     )
