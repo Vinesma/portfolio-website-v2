@@ -10,14 +10,22 @@
     .project-box{
         @include main-font;
         display: flex;
-        width: 45%;
+        width: 48%;
         margin-bottom: 2rem;
 
-        &-descriptionbox{
+        &-top{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
             width: 100%;
             padding: 0.5rem 0.6rem;
             background-color: $main-color;
             border-left: $sec-button-color 0.5rem solid;
+
+            .title-box{
+                border-bottom: 2px solid $decal-color;
+                padding-bottom: 0.2rem;
+            }
 
             .link-group{
                 margin-top: 1rem;
@@ -31,7 +39,7 @@
                 }
 
                 input {
-                    width: 50%;
+                    width: 95%;
                 }
             }
 
@@ -50,18 +58,18 @@
             }
         }
         
-        &-infogroup{
+        &-bottom{
             display: flex;
-            flex-direction: column;
+            margin-top: 0.5rem;
             justify-content: space-between;
-            margin-left: 0.3rem;
+            border: $decal-color solid 2px;
+            border-radius: 3px;
 
-            .infobox{
+            .info-box{
                 display: flex;
                 justify-content: flex-end;
                 align-items: center;
                 padding: 0.5rem;
-                background-color: $main-color;
     
                 i {
                     margin-right: 0.5rem;

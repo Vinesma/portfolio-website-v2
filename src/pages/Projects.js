@@ -40,7 +40,7 @@ export default class Projects extends Component {
                 { this.state.loading === true ? <Loader /> : null }
                 <div className="projects-section-group">
                     { this.state.repositories.map(repository => (
-                        <ProjectBox repository={repository}/>
+                        <ProjectBox key={ repository.id } repository={repository}/>
                     )) 
                     }
                 </div>
