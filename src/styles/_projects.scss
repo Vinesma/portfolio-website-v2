@@ -19,13 +19,33 @@
             background-color: $main-color;
             border-left: $sec-button-color 0.5rem solid;
 
+            .link-group{
+                margin-top: 1rem;
+
+                div {
+                    margin-top: 0.5rem;
+                }
+
+                i {
+                    margin-right: 0.5rem;
+                }
+
+                input {
+                    width: 50%;
+                }
+            }
+
+            .programming-language{
+                margin-top: 1rem;
+            }
+
             a {
                 color: $sec-color;
                 text-decoration: underline;
             }
 
             p {
-                margin-top: 0.5rem;
+                margin-top: 0.8rem;
                 color: $text-color;
             }
         }
@@ -33,7 +53,7 @@
         &-infogroup{
             display: flex;
             flex-direction: column;
-            justify-content: space-around;
+            justify-content: space-between;
             margin-left: 0.5rem;
 
             .infobox{

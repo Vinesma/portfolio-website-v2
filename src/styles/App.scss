@@ -13,6 +13,27 @@
     min-height: 100vh;
 }
 
+.loader {
+    @include loader-keyframes;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    position: relative;
+    border: 4px solid #fff;
+    left: 50%;
+    top: 40%;
+    margin-top: 5rem;
+    animation: loader 2s infinite ease;
+
+    &-inner{
+        vertical-align: top;
+        display: inline-block;
+        width: 100%;
+        background-color: #fff;
+        animation: loader-inner 2s infinite ease-in;
+    }
+}
+
 /* LINKS */
 
 a {

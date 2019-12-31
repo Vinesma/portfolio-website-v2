@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './styles/App.scss';
 import Header from './components/Header';
-import Home from './components/Home';
-import Gallery from './components/Gallery';
-import Projects from './components/Projects';
+import Home from './pages/Home';
+import Gallery from './pages/Gallery';
+import Projects from './pages/Projects';
 import { 
   BrowserRouter as Router, 
   Route,
