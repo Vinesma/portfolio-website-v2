@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Home from './pages/Home';
 import Gallery from './pages/Gallery';
 import Projects from './pages/Projects';
+import Skills from './pages/Skills';
 import { 
   BrowserRouter as Router, 
   Route,
@@ -88,7 +89,9 @@ class App extends Component {
             <Route path="/projects">
               <Projects />
             </Route>
-            <Route path="/skills"></Route>
+            <Route path="/skills">
+              <Skills />
+            </Route>
             <Route path="/gallery">
               <Gallery />
             </Route>
