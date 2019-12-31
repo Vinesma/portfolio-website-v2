@@ -12,7 +12,17 @@ export default function ProjectBox(props) {
                 <div className="project-box-descriptionbox">
                     <a href={ props.repository.html_url } target="_blank" rel="noopener noreferrer">
                         <h3>{ props.repository.name }</h3>
-                    </a> { ' Last updated: ' + dateConvert(props.repository.updated_at) }
+                    </a> 
+                    { ' Last updated: ' + dateConvert(props.repository.updated_at) }
+                    { (props.repository.homepage !== '' && props.repository.homepage !== null) 
+                    ? 
+                        <p>Deployed: <a
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href={ props.repository.homepage }>{ props.repository.homepage }</a></p>
+                    : 
+                        null 
+                    }
                     <p>{ props.repository.description }</p>
                     <div className="link-group">
                         <div>
