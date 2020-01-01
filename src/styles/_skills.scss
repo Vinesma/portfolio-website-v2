@@ -39,3 +39,24 @@
         }
     }
 }
+
+.experience-section {
+    @include sec-font;
+    margin-top: 2rem;
+
+    &-title{
+        @extend .standard-button;
+        display: flex;
+        justify-content: space-between;
+        border-left: $sec-button-color 0.5rem solid;
+        margin-bottom: 0.5rem;
+        cursor: initial;
+    }
+
+    .experience-box{
+        margin-left: 2rem;
+        padding: 0.5rem 0.6rem;
+        border-left: $sec-button-color 0.5rem solid;
+        background-color: $main-color;
+    }
+}

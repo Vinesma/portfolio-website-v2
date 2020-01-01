@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SkillSection from '../components/SkillSection';
+import ExperienceSection from '../components/ExperienceSection';
 
 export default class Skills extends Component {
     state = {
@@ -78,12 +79,26 @@ export default class Skills extends Component {
 
     render() {
         return (
-            <section className="skills-section">
-                { this.state.skillCategory.map(skillCategory => (
-                    <SkillSection key={skillCategory.name} skillCategory={skillCategory}/>
-                ))
-                }
-            </section>
+            <>
+                <section className="skills-section">
+                    { this.state.skillCategory.map(skillCategory => (
+                        <SkillSection key={skillCategory.name} skillCategory={skillCategory}/>
+                    ))
+                    }
+                </section>
+                <section className="experience-section">
+                    <div className="experience-section-title">
+                        <div>
+                            <i className="fas fa-briefcase"></i>
+                            Work Experience
+                        </div>
+                    </div>
+                    { this.state.experience.map(experience => (
+                        <ExperienceSection key={experience.title} experience={experience} />
+                    )) 
+                    }
+                </section>
+            </>
         )
     }
 }
