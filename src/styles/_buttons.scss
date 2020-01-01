@@ -10,6 +10,10 @@
         color: $sec-button-color;
         margin-right: 0.5rem;
     }
+
+    @media only screen and (max-width: $medium-screen) {
+        width: 100%;
+    }
 }
 
 .nav-button {
@@ -20,6 +24,10 @@
 
     &:hover {
         @include box-shadow-h;
+    }
+
+    @media only screen and (max-width: $medium-screen) {
+        margin-top: 0.5rem;
     }
 }
 
@@ -32,6 +40,10 @@
     i {
         color: $standard-button-color;
         margin-right: 0.5rem;
+    }
+
+    @media only screen and (max-width: $medium-screen) {
+        width: 100%;
     }
 }
 

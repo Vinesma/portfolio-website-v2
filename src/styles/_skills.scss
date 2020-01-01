@@ -1,1 +1,41 @@
 /* SKILLS SECTION */
+
+.skill-category{
+    @include sec-font;
+
+    .category-title{
+        @extend .standard-button;
+        display: flex;
+        justify-content: space-between;
+        border-left: $sec-button-color 0.5rem solid;
+        margin-bottom: 0.5rem;
+        cursor: initial;
+    }
+
+    .title-group{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+
+        .skill-title{
+            @extend .category-title;
+            color: $text-color;
+            border: none;
+            width: 96%;
+
+            i {
+                color: $text-color;
+            }
+        }
+    
+        .skill-title-alt{
+            @extend .skill-title;
+            color: $alternative-text-color;
+            background-color: $alternative-color;
+
+            i {
+                color: $alternative-text-color;
+            }
+        }
+    }
+}

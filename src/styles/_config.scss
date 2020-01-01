@@ -7,6 +7,11 @@ $sec-button-color: #ec5353;
 $sec-color: #ec5353;
 $text-color: #494949;
 $decal-color: #ebebeb;
+$alternative-color: #e7e7e7;
+$alternative-text-color: #404040;
+
+$transition-screen: 1272px;
+$medium-screen: 1134px;
 
 /* FONTS */
 
@@ -14,6 +19,10 @@ $decal-color: #ebebeb;
     font-family: 'Lexend Mega', sans-serif;
     font-size: 1.8rem;
     color: $main-color;
+
+  @media only screen and (max-width: $medium-screen) {
+    font-size: 1.6rem;
+  }
 }
 
 @mixin main-font {
@@ -32,6 +41,10 @@ $decal-color: #ebebeb;
     font-family: 'Lexend Deca', sans-serif;
     font-size: 1.2rem;
     color: $sec-color;
+
+    @media only screen and (max-width: $medium-screen) {
+      font-size: 0.9rem;
+    }
 }
 
 /* ANIMATION */
