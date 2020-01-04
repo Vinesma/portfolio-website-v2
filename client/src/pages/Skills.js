@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SkillSection from '../components/SkillSection';
 import ExperienceSection from '../components/ExperienceSection';
+import axios from 'axios';
 
 export default class Skills extends Component {
     state = {
@@ -75,6 +76,12 @@ export default class Skills extends Component {
                 comment: 'Primary obligations were database maintenance and configuring the various systems in the company.',
             },
         ],
+    }
+
+    componentDidMount = () => {
+        axios.get('/api/skills')
+        .then(res => console.log(res.data))
+        .catch(err => console.log(err));
     }
 
     render() {
