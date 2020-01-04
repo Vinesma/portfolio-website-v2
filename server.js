@@ -7,7 +7,7 @@ const app = express();
 app.use(express.json());
 
 const db = 'mongodb+srv://Vinesma:m6xFaQEFx64qJn@portfolioweb-2tvzl.mongodb.net/Portfolio?retryWrites=true&w=majority';
-
+//Change password
 mongoose
     .connect(db, { 
         useNewUrlParser: true,
