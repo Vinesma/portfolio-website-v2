@@ -1,12 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
+const config = require('config');
 
 const app = express();
 
 app.use(express.json());
 
-const db = 'mongodb+srv://Vinesma:m6xFaQEFx64qJn@portfolioweb-2tvzl.mongodb.net/Portfolio?retryWrites=true&w=majority';
+const db = config.get('dbString');
 //Change password
 mongoose
     .connect(db, { 
@@ -18,6 +19,7 @@ mongoose
 
 app.use('/api/skills', require('./routes/api/skills'));
 app.use('/api/experiences', require('./routes/api/experiences'));
+app.use('/api/images', require('./routes/api/images'));
 
 if (process.env.NODE_ENV === 'production') {
     // Set static folder

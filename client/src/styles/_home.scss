@@ -3,6 +3,7 @@
 .home-section {
     display: flex;
     justify-content: space-between;
+    margin-top: 20vh;
 
     &-image{
         img {
@@ -41,6 +42,7 @@
 
     @media only screen and (max-width: $medium-screen) {
         flex-direction: column;
+        margin-top: 5vh;
 
         &-links {
             margin-top: 0.5rem;

@@ -43,20 +43,42 @@
 .experience-section {
     @include sec-font;
     margin-top: 2rem;
+    padding-bottom: 2rem;
 
     &-title{
         @extend .standard-button;
         display: flex;
         justify-content: space-between;
-        border-left: $sec-button-color 0.5rem solid;
-        margin-bottom: 0.5rem;
+        border-left: $sec-button-color 0.5rem solid;        
         cursor: initial;
     }
-
+    
     .experience-box{
-        margin-left: 2rem;
+        margin: 1rem 0 0 2rem;
         padding: 0.5rem 0.6rem;
         border-left: $sec-button-color 0.5rem solid;
         background-color: $main-color;
+
+        h3 {
+            border-bottom: 2px solid $decal-color;
+            padding-bottom: 0.2rem;
+        }
+
+        h5 {
+            margin-top: 0.5rem;
+        }
+        
+        i {
+            margin-right: 0.3rem;
+        }
+
+        .comment{
+            margin-top: 0.5rem;
+            color: $text-color;
+        }
+
+        @media only screen and (max-width: $medium-screen){
+            margin-left: 1rem;
+        }
     }
 }

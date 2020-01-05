@@ -1,33 +1,33 @@
 import React, { Fragment } from 'react'
 
 export default function GallerySection(props) {
+    const category = props.category;
+
     return (
         <Fragment>
             <div 
-            key={ props.category.shorthand }
-            className={ 'gallery-section-category ' + props.category.shorthand }>
-                <div id={ 'id-' + props.category.shorthand } className="category-title">
+            key={ category._id }
+            className={ 'gallery-section-category ' + category.shorthand }>
+                <div id={ 'id-' + category.shorthand } className="category-title">
                     <div>
-                        <i className={ props.category.icon }></i>{ props.category.name }
+                        { category.icon !== ''
+                        ?
+                            <div><i className={ category.icon }></i>{ category.name }</div>
+                        :
+                            <div>{ category.name }</div>
+                        }
                     </div>
                     <a href="#top"><i className="fas fa-chevron-up"></i></a>
                 </div>
                 <div className="category-image-display">
-                    <div className="image-display-box">
-                        <a href="https://i.imgur.com/kE6Wq1t.png">
-                            <img src="https://i.imgur.com/kE6Wq1tm.png" alt=""></img>
-                        </a>
-                    </div>
-                    <div className="image-display-box">
-                        <a href="https://i.imgur.com/kE6Wq1t.png">
-                            <img src="https://i.imgur.com/kE6Wq1tm.png" alt=""></img>
-                        </a>
-                    </div>
-                    <div className="image-display-box">
-                        <a href="https://i.imgur.com/kE6Wq1t.png">
-                            <img src="https://i.imgur.com/kE6Wq1tm.png" alt=""></img>
-                        </a>
-                    </div>
+                    { category.imageList.map(image => (
+                        <div key={image._id} className="image-display-box">
+                            <a href={image.link} title={image.hoverComment} target="_blank" rel="noopener noreferrer">
+                                <img src={image.thumbnail} alt=""></img>
+                            </a>
+                        </div>
+                    ))
+                    }
                 </div>
             </div>
         </Fragment>

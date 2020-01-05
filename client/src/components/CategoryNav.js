@@ -1,12 +1,14 @@
 import React, { Fragment } from 'react'
 
 export default function CategoryNav(props) {
+    const category = props.category;
+
     return (
         <Fragment>
-            <a href={ '#id-' + props.category.shorthand }>
+            <a href={ '#id-' + category.shorthand }>
                 <button className="nav-button">
-                    { props.category.icon === '' ? null : <i className={props.category.icon} />}                            
-                    { props.category.name }
+                    { category.icon === '' ? null : <i className={category.icon} />}                            
+                    { category.name }
                 </button>
             </a>
         </Fragment>

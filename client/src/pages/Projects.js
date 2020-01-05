@@ -37,7 +37,7 @@ export default class Projects extends Component {
     render() {
         return (
             <section className="projects-section">
-                { this.state.loading === true ? <Loader /> : null }
+                { this.state.loading ? <Loader /> : null }
                 <div className="projects-section-group">
                     { this.state.repositories.map(repository => (
                         <ProjectBox key={ repository.id } repository={repository}/>

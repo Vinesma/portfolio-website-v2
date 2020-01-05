@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Vinesma/portfolio-website-v2#readme",
   "dependencies": {
+    "config": "^3.2.4",
     "express": "^4.17.1",
     "mongoose": "^5.8.3"
   }

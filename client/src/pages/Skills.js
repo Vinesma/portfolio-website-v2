@@ -35,14 +35,14 @@ export default class Skills extends Component {
         return (
             <>
                 <section className="skills-section">
-                    { this.state.loadingSkills === true ? <Loader /> : null }
+                    { this.state.loadingSkills ? <Loader /> : null }
                     { this.state.skillCategory.map(skillCategory => (
                         <SkillSection key={skillCategory._id} skillCategory={skillCategory}/>
                     ))
                     }
                 </section>
                 <section className="experience-section">                    
-                    { this.state.loadingExperiences === true 
+                    { this.state.loadingExperiences
                     ? null
                     :
                     <div className="experience-section-title">
