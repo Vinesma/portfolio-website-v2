@@ -7,7 +7,7 @@ const app = express();
 
 app.use(express.json());
 
-const db = config.get('dbString');
+const db = process.env.DB_CONNECT_STRING || config.get('dbString');
 //Change password
 mongoose
     .connect(db, { 
