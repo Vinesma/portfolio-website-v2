@@ -18,11 +18,12 @@ router.get('/', (req, res) => {
 // @access Public
 
 router.post('/', (req, res) => {
-    console.log(req.body);
     const newSkill = new SkillCategory({
-        category: req.body,
+        name: req.body.name,
+        icon: req.body.icon,
+        skillList: req.body.skillList,
     });
-
+    console.log(newSkill);
     newSkill.save().then(category => res.json(category));
 });
 
