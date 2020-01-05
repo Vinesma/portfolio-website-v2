@@ -6,9 +6,7 @@ const app = express();
 
 app.use(express.json());
 
-
-const db = process.env.DB_CONNECT_STRING;
-
+const db = process.env.DB_CONNECTION_STRING;
 
 //Change password
 mongoose
