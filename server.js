@@ -1,12 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
+const config = require('config');
 
 const app = express();
 
 app.use(express.json());
 
-const db = process.env.DB_CONNECTION_STRING;
+const db = process.env.DB_CONNECTION_STRING || config.get('dbString');
 
 //Change password
 mongoose
