@@ -7,7 +7,12 @@ const app = express();
 
 app.use(express.json());
 
-const db = process.env.DB_CONNECT_STRING || config.get('dbString');
+if (config.has('dbString')) {
+    const db = config.get('dbString');
+} else {
+    const db = process.env.DB_CONNECT_STRING;
+}
+
 //Change password
 mongoose
     .connect(db, { 
