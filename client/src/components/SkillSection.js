@@ -14,7 +14,7 @@ export default function SkillSection(props) {
             </div>
             <div className="title-group">
                 { skillCategory.skillList.map(skill => (
-                    <div key={skill.name} className={ alternateColor ? 'skill-title' : 'skill-title-alt'}>
+                    <div key={skill._id} className={ alternateColor ? 'skill-title' : 'skill-title-alt'}>
                         <div>
                             { skill.icon !== '' ? <i className={ skill.icon }></i> : null }
                             { skill.name }

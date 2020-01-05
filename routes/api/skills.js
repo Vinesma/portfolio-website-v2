@@ -10,7 +10,7 @@ const SkillCategory = require('../../models/SkillCategory');
 router.get('/', (req, res) => {
     SkillCategory
         .find()
-        .then(skillCategory => res.json(skillCategory))
+        .then(skillCategory => res.json(skillCategory));
 });
 
 // @route  POST api/skills
@@ -23,7 +23,6 @@ router.post('/', (req, res) => {
         icon: req.body.icon,
         skillList: req.body.skillList,
     });
-    console.log(newSkill);
     newSkill.save().then(category => res.json(category));
 });
 

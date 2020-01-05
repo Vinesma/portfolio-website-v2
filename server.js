@@ -17,6 +17,7 @@ mongoose
     .catch(err => console.error(err));
 
 app.use('/api/skills', require('./routes/api/skills'));
+app.use('/api/experiences', require('./routes/api/experiences'));
 
 if (process.env.NODE_ENV === 'production') {
     // Set static folder
