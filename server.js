@@ -9,7 +9,6 @@ app.use(express.json());
 
 const db = process.env.DB_CONNECTION_STRING || config.get('dbString');
 
-//Change password
 mongoose
     .connect(db, { 
         useNewUrlParser: true,
