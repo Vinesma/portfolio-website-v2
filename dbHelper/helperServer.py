@@ -23,7 +23,7 @@ def presentChoice():
 
 def presentChoiceString():
     chosenOption = sys.stdin.readline()
-    return chosenOption
+    return chosenOption.rstrip()
 
 def listAllCollectionItems(collectionName):
     print("\n * Listing:")
@@ -41,28 +41,36 @@ def insertDocument(collectionName):
         company = presentChoiceString()
         print(" * comment:")
         comment = presentChoiceString()
-        print(" * from:")
+        print(" * from (YYYY-MM-DD):")
         dateFrom = presentChoiceString()
-        print(" * to:")
+        print(" * to (YYYY-MM-DD):")
         dateTo = presentChoiceString()
         print(" * Are you currently employed at this job? (Y/N)")
-        currentlyEmployed = False
-        newExperience = {
-            "title" : title,
-            "type" : experienceType,
-            "company" : company,
-            "comment": comment,
-            "from": dateFrom,
-            "to": dateTo,
-            "currentlyEmployed": currentlyEmployed,
-        }
-        database[collectionName].insert_one(newExperience)
+        currentlyEmployed = presentChoiceString()
+        if currentlyEmployed.lower() == 'y':
+            currentlyEmployed = True
+        else:
+            currentlyEmployed = False
+        try:
+            newExperience = {
+                "title" : title,
+                "type" : experienceType,
+                "company" : company,
+                "comment": comment,
+                "from": datetime.datetime.fromisoformat(dateFrom),
+                "to": datetime.datetime.fromisoformat(dateTo),
+                "currentlyEmployed": currentlyEmployed,
+            }
+            database[collectionName].insert_one(newExperience)
+            print("\n * NEW EXPERIENCE ADDED!")
+        except Exception as err:
+            print("\nERROR : {}".format(err))
     elif collectionName == 'skillcategories':
         pass
     elif collectionName == 'imagecategories':
         pass
     else:
-        pass
+        print("\nERROR : UNKNOWN COLLECTION NAME")
 
 # START
 
@@ -84,24 +92,27 @@ while True:
         while choice != 5:
             print("\n-- WORK EXPERIENCE --\n")
             print("1. List all experiences.")
-            print("2. Add a new experience.")
-            print("3. Modify an existing experience.")
-            print("4. Remove an experience.")
-            print("5. Go back.")
-            print("6. Exit program.")
+            print("2. Find an experience.")
+            print("3. Add a new experience.")
+            print("4. Modify an existing experience.")
+            print("5. Remove an experience.")
+            print("6. Go back.")
+            print("7. Exit program.")
 
             choice = presentChoice()
             if choice == 1:
                 listAllCollectionItems('experiences')
             elif choice == 2:
-                insertDocument('experiences')
-            elif choice == 3:
                 pass
+            elif choice == 3:
+                insertDocument('experiences')
             elif choice == 4:
                 pass
             elif choice == 5:
                 pass
             elif choice == 6:
+                pass
+            elif choice == 7:
                 print("Exiting...")
                 sys.exit()
             else:
@@ -110,15 +121,16 @@ while True:
         while choice != 5:
             print("\n-- SKILL CATEGORIES --\n")
             print("1. List all skill categories.")
-            print("2. Add a new skill category.")
-            print("3. Modify an existing skill category.")
-            print("4. Remove a skill category.")
-            print("5. Go back.")
-            print("6. Exit program.")
+            print("2. Find a skill category.")
+            print("3. Add a new skill category.")
+            print("4. Modify an existing skill category.")
+            print("5. Remove a skill category.")
+            print("6. Go back.")
+            print("7. Exit program.")
 
             choice = presentChoice()
             if choice == 1:
-                listAllCollectionItems('skillcategories')
+                pass
             elif choice == 2:
                 pass
             elif choice == 3:
@@ -128,6 +140,8 @@ while True:
             elif choice == 5:
                 pass
             elif choice == 6:
+                pass
+            elif choice == 7:
                 print("Exiting...")
                 sys.exit()
             else:
@@ -144,7 +158,7 @@ while True:
 
             choice = presentChoice()
             if choice == 1:
-                listAllCollectionItems('imagecategories')
+                pass
             elif choice == 2:
                 pass
             elif choice == 3:
@@ -152,6 +166,8 @@ while True:
             elif choice == 4:
                 pass
             elif choice == 5:
+                pass
+            elif choice == 6:
                 pass
             elif choice == 6:
                 print("Exiting...")
