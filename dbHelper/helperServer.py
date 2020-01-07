@@ -1,5 +1,22 @@
 import pymongo, json, os, sys, datetime, pprint
 
+from collectionHandlers import (
+    listAllDocuments,
+    insertDocument,
+    findDocument,
+    modifyDocument,
+    removeDocument
+)
+
+from helperFunctions import (
+    clearScreen,
+    presentChoice,
+    presentChoiceString,
+    waitForInput,
+    handleDates,
+    handleBool
+)
+
 try:
     with open(os.path.join("..", "config", "default.json"), "r") as readFile:
         connectionString = json.load(readFile)
@@ -12,146 +29,19 @@ database = client.Portfolio
 collectionList = database.list_collection_names()
 count = 1
 
-def clearScreen():
-    os.system('clear' if sys.platform == 'linux' else 'cls')
-
-def presentChoice():
-    chosenOption = sys.stdin.readline()
-    try:
-        chosenOption = int(chosenOption)
-        return chosenOption
-    except ValueError as err:
-        print("\nERROR : {}\nPlease provide only numerical values.".format(err))
-        return 0
-
-def presentChoiceString():
-    chosenOption = sys.stdin.readline()
-    return chosenOption.rstrip()
-
-def waitForInput(clear):
-    input("\nPress Enter to continue...")
-    if clear:
-        clearScreen()
-
-def handleDates(value):
-    try:
-        return datetime.datetime.fromisoformat(value)
-    except Exception as err:
-        print("\nERROR : {}".format(err))
-        return
-
-def handleBool():
-    choice = presentChoiceString()
-    choice = True if choice == 'y' else False
-    return choice
-
-def listAllCollectionItems(collectionName):
-    print("\n * Listing:")
-    for item in database[collectionName].find({}, {"_id": 0, "__v": 0}):
-        print("\n")
-        pprint.pprint(item)
-    waitForInput(True)
-
-def insertDocument(collectionName):
-    if collectionName == 'experiences':
-        print("\n* ADDING A NEW EXPERIENCE:")
-        print(" * title:")
-        title = presentChoiceString()
-        print(" * type:")
-        experienceType = presentChoiceString()
-        print(" * company:")
-        company = presentChoiceString()
-        print(" * comment:")
-        comment = presentChoiceString()
-        print(" * from (YYYY-MM-DD):")
-        dateFrom = handleDates(presentChoiceString())
-        print(" * to (YYYY-MM-DD):")
-        dateTo = handleDates(presentChoiceString())
-        print(" * Are you currently employed at this job? (Y/N)")
-        currentlyEmployed = handleBool()
-        newExperience = {
-            "title" : title,
-            "type" : experienceType,
-            "company" : company,
-            "comment": comment,
-            "from": dateFrom,
-            "to": dateTo,
-            "currentlyEmployed": currentlyEmployed,
-        }
-        database[collectionName].insert_one(newExperience)
-        print("\n* NEW EXPERIENCE ADDED!")
-    elif collectionName == 'skillcategories':
-        pass
-    elif collectionName == 'imagecategories':
-        pass
-    else:
-        print("\nERROR : UNKNOWN COLLECTION NAME")
-    waitForInput(True)
-
-def findDocument(collectionName):
-    print("\n* Search for key:")
-    keySearchTerm = presentChoiceString().lower()
-    print("* Search for value:")
-    valueSearchTerm = presentChoiceString()
-    document = database[collectionName].find_one({ keySearchTerm : valueSearchTerm })
-
-    if document != None:
-        print("\n")
-        pprint.pprint(document)
-    else:
-        print("\nNo results found for your query...")
-    waitForInput(False)
-    return document
-
-def modifyDocument(collectionName):
-    document = findDocument(collectionName)
-
-    if document == None:
-        return
-
-    if collectionName == 'experiences':
-        print("\n* MODIFYING AN EXPERIENCE:")
-        for key in list(document.keys()):
-            if (key != "_id" and key != "__v"):
-                print("* Change '{}' field? (Y/N)".format(key))
-                choice = presentChoiceString().lower()
-                choice = True if choice == 'y' else False
-                if choice:
-                    print("* New '{}':".format(key))
-                    value = presentChoiceString()
-                    database[collectionName].find_one_and_update(
-                        { "_id" : document["_id"] },
-                        { '$set' : { key : value } }
-                    )
-    print("\n* DOCUMENT UPDATED!")
-    waitForInput(True)
-
-def removeDocument(collectionName):
-    document = findDocument(collectionName)
-
-    if document == None:
-        return
-
-    print("Are you sure you want to remove this document? (Y/N)")
-    choice = handleBool()
-    if choice:
-        database[collectionName].find_one_and_delete({ "_id" : document["_id"] })
-        print("\n* DOCUMENT REMOVED!")
-    waitForInput(True)
-
 # START
 
 while True:
-    print("-- Portfolio DATABASE MANAGER --")
+    print("-- PORTFOLIO DATABASE MANAGER --")
     print("\nCurrent collections in database:")
     for collection in collectionList:
         print("{} : {}".format(count, collection))
         count += 1
     count = 1
-    print("\nWhat do you want to do today?\n")
-    print("1. FIND/ADD/MODIFY/REMOVE Work Experiences.")
-    print("2. FIND/ADD/MODIFY/REMOVE Skills Categories.")
-    print("3. FIND/ADD/MODIFY/REMOVE Image Categories.")
+    print("\nWhat collection you want to work with today?\n")
+    print("1. Work Experiences.")
+    print("2. Skills Categories.")
+    print("3. Image Categories.")
     print("4. Exit program.")
 
     choice = presentChoice()
@@ -168,15 +58,15 @@ while True:
 
             choice = presentChoice()
             if choice == 1:
-                listAllCollectionItems('experiences')
+                listAllDocuments(database, 'experiences')
             elif choice == 2:
-                findDocument('experiences')
+                findDocument(database, 'experiences')
             elif choice == 3:
-                insertDocument('experiences')
+                insertDocument(database, 'experiences')
             elif choice == 4:
-                modifyDocument('experiences')                
+                modifyDocument(database, 'experiences')                
             elif choice == 5:
-                removeDocument('experiences')
+                removeDocument(database, 'experiences')
             elif choice == 6:
                 clearScreen()
             elif choice == 7:
@@ -197,15 +87,15 @@ while True:
 
             choice = presentChoice()
             if choice == 1:
-                listAllCollectionItems('skillcategories')
+                listAllDocuments(database, 'skillcategories')
             elif choice == 2:
-                findDocument('skillcategories')
+                findDocument(database, 'skillcategories')
             elif choice == 3:
-                insertDocument('skillcategories')
+                insertDocument(database, 'skillcategories')
             elif choice == 4:
-                modifyDocument('skillcategories')
+                modifyDocument(database, 'skillcategories')
             elif choice == 5:
-                removeDocument('skillcategories')
+                removeDocument(database, 'skillcategories')
             elif choice == 6:
                 clearScreen()
             elif choice == 7:
@@ -226,15 +116,15 @@ while True:
 
             choice = presentChoice()
             if choice == 1:
-                listAllCollectionItems('imagecategories')
+                listAllDocuments(database, 'imagecategories')
             elif choice == 2:
-                findDocument('imagecategories')
+                findDocument(database, 'imagecategories')
             elif choice == 3:
-                insertDocument('imagecategories')
+                insertDocument(database, 'imagecategories')
             elif choice == 4:
-                modifyDocument('imagecategories')
+                modifyDocument(database, 'imagecategories')
             elif choice == 5:
-                removeDocument('imagecategories')
+                removeDocument(database, 'imagecategories')
             elif choice == 6:
                 clearScreen()
             elif choice == 7:
