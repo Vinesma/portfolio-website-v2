@@ -29,7 +29,7 @@ def presentChoiceString():
     return chosenOption.rstrip()
 
 def waitForInput(clear):
-    input("\n Press Enter to continue...")
+    input("\nPress Enter to continue...")
     if clear:
         clearScreen()
 
@@ -85,15 +85,15 @@ def findDocument(collectionName):
     keySearchTerm = presentChoiceString().lower()
     print("* Search for value:")
     valueSearchTerm = presentChoiceString()
-    result = database[collectionName].find_one({ keySearchTerm : valueSearchTerm })
+    document = database[collectionName].find_one({ keySearchTerm : valueSearchTerm })
 
-    if result != None:
+    if document != None:
         print("\n")
-        pprint.pprint(result)
+        pprint.pprint(document)
     else:
         print("\nNo results found for your query...")
     waitForInput(False)
-    return result
+    return document
 
 def modifyDocument(collectionName):
     document = findDocument(collectionName)
@@ -108,7 +108,7 @@ def modifyDocument(collectionName):
                 print("* Change '{}' field? (Y/N)".format(key))
                 choice = presentChoiceString().lower()
                 choice = True if choice == 'y' else False
-                if choice == True:
+                if choice:
                     print("* New '{}':".format(key))
                     value = presentChoiceString()
                     database[collectionName].find_one_and_update(
@@ -116,6 +116,21 @@ def modifyDocument(collectionName):
                         { '$set' : { key : value } }
                     )
     print("\n* DOCUMENT UPDATED!")
+    waitForInput(True)
+
+def removeDocument(collectionName):
+    document = findDocument(collectionName)
+
+    if document == None:
+        return
+
+    print("Are you sure you want to remove this document? (Y/N)")
+    choice = presentChoiceString().lower()
+    choice = True if choice == 'y' else False
+    if choice:
+        database[collectionName].find_one_and_delete({ "_id" : document["_id"] })
+        print("\n* DOCUMENT REMOVED!")
+    waitForInput(True)
 
 # START
 
@@ -154,7 +169,7 @@ while True:
             elif choice == 4:
                 modifyDocument('experiences')                
             elif choice == 5:
-                pass
+                removeDocument('experiences')
             elif choice == 6:
                 clearScreen()
             elif choice == 7:
@@ -181,9 +196,9 @@ while True:
             elif choice == 3:
                 insertDocument('skillcategories')
             elif choice == 4:
-                pass
+                modifyDocument('skillcategories')
             elif choice == 5:
-                pass
+                removeDocument('skillcategories')
             elif choice == 6:
                 clearScreen()
             elif choice == 7:
@@ -210,9 +225,9 @@ while True:
             elif choice == 3:
                 insertDocument('imagecategories')
             elif choice == 4:
-                pass
+                modifyDocument('imagecategories')
             elif choice == 5:
-                pass
+                removeDocument('imagecategories')
             elif choice == 6:
                 clearScreen()
             elif choice == 7:
