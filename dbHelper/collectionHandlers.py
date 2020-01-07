@@ -1,4 +1,4 @@
-import os, sys, datetime, pprint
+import os, sys, datetime, pprint, bson
 
 from helperFunctions import (
     clearScreen,
@@ -150,10 +150,67 @@ def modifyDocument(database, collectionName):
                 if choice:
                     print("* New '{}':".format(key))
                     value = presentChoiceString()
+
                     database[collectionName].find_one_and_update(
                         { "_id" : document["_id"] },
                         { '$set' : { key : value } }
                     )
+    elif collectionName == 'skillcategories':
+        print("\n* MODIFYING A SKILL CATEGORY:")
+        for key in list(document.keys()):
+            if (key != "_id" and key != "__v" and key != "skillList"):
+                print("* Change '{}' field? (Y/N)".format(key))
+                choice = handleBool()
+                if choice:
+                    print("* New '{}':".format(key))
+                    value = presentChoiceString()
+
+                    database[collectionName].find_one_and_update(
+                        { "_id" : document["_id"] },
+                        { '$set' : { key : value } }
+                    )
+            elif key == "skillList":
+                newList = document[key]
+                pprint.pprint(newList)
+                print("\n* Change '{}'? (Y/N)".format(key))
+                choice = handleBool()
+                while choice:
+                    print("Add a new skill to this list? (Y/N)")
+                    newSkillChoice = handleBool()
+                    if newSkillChoice:
+                        newSkill = { "_id" : bson.ObjectId(), "name" : "", "proficiency" : 0, "icon" : ""}
+
+                        print(" * skill name:")
+                        newSkill["name"] = presentChoiceString()
+                        print(" * skill proficiency (1 to 3):")
+                        newSkill["proficiency"] = presentChoice()
+                        print(" * skill icon:")
+                        newSkill["icon"] = presentChoiceString()
+                        newList.append(newSkill)
+
+                        database[collectionName].find_one_and_update(
+                            { "_id" : document["_id"] },
+                            { '$set' : { key : newList } }
+                        )
+                    
+                    print("Remove a skill from this list? (Y/N)")
+                    removeSkillChoice = handleBool()
+                    if removeSkillChoice:
+                        print(" * Which index to remove? (Starts at 1)")
+                        index = presentChoice()
+                        newList.pop(index - 1)
+
+                        database[collectionName].find_one_and_update(
+                            { "_id" : document["_id"] },
+                            { '$set' : { key : newList } }
+                        )
+                    
+                    if (not newSkillChoice and not removeSkillChoice):
+                        choice = False
+    elif collectionName == 'imagecategories':
+        pass
+    else:
+        print("\nERROR : UNKNOWN COLLECTION NAME")
     print("\n* DOCUMENT UPDATED!")
     waitForInput(True)
 
