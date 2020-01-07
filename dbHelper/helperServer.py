@@ -33,6 +33,18 @@ def waitForInput(clear):
     if clear:
         clearScreen()
 
+def handleDates(value):
+    try:
+        return datetime.datetime.fromisoformat(value)
+    except Exception as err:
+        print("\nERROR : {}".format(err))
+        return
+
+def handleBool():
+    choice = presentChoiceString()
+    choice = True if choice == 'y' else False
+    return choice
+
 def listAllCollectionItems(collectionName):
     print("\n * Listing:")
     for item in database[collectionName].find({}, {"_id": 0, "__v": 0}):
@@ -52,26 +64,22 @@ def insertDocument(collectionName):
         print(" * comment:")
         comment = presentChoiceString()
         print(" * from (YYYY-MM-DD):")
-        dateFrom = presentChoiceString()
+        dateFrom = handleDates(presentChoiceString())
         print(" * to (YYYY-MM-DD):")
-        dateTo = presentChoiceString()
+        dateTo = handleDates(presentChoiceString())
         print(" * Are you currently employed at this job? (Y/N)")
-        currentlyEmployed = presentChoiceString()
-        currentlyEmployed = True if currentlyEmployed.lower() == 'y' else False
-        try:
-            newExperience = {
-                "title" : title,
-                "type" : experienceType,
-                "company" : company,
-                "comment": comment,
-                "from": datetime.datetime.fromisoformat(dateFrom),
-                "to": datetime.datetime.fromisoformat(dateTo),
-                "currentlyEmployed": currentlyEmployed,
-            }
-            database[collectionName].insert_one(newExperience)
-            print("\n* NEW EXPERIENCE ADDED!")
-        except Exception as err:
-            print("\nERROR : {}".format(err))
+        currentlyEmployed = handleBool()
+        newExperience = {
+            "title" : title,
+            "type" : experienceType,
+            "company" : company,
+            "comment": comment,
+            "from": dateFrom,
+            "to": dateTo,
+            "currentlyEmployed": currentlyEmployed,
+        }
+        database[collectionName].insert_one(newExperience)
+        print("\n* NEW EXPERIENCE ADDED!")
     elif collectionName == 'skillcategories':
         pass
     elif collectionName == 'imagecategories':
@@ -125,8 +133,7 @@ def removeDocument(collectionName):
         return
 
     print("Are you sure you want to remove this document? (Y/N)")
-    choice = presentChoiceString().lower()
-    choice = True if choice == 'y' else False
+    choice = handleBool()
     if choice:
         database[collectionName].find_one_and_delete({ "_id" : document["_id"] })
         print("\n* DOCUMENT REMOVED!")
