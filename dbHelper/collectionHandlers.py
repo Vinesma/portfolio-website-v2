@@ -208,7 +208,57 @@ def modifyDocument(database, collectionName):
                     if (not newSkillChoice and not removeSkillChoice):
                         choice = False
     elif collectionName == 'imagecategories':
-        pass
+        print("\n* MODIFYING AN IMAGE CATEGORY:")
+        for key in list(document.keys()):
+            if (key != "_id" and key != "__v" and key != "imageList"):
+                print("* Change '{}' field? (Y/N)".format(key))
+                choice = handleBool()
+                if choice:
+                    print("* New '{}':".format(key))
+                    value = presentChoiceString()
+
+                    database[collectionName].find_one_and_update(
+                        { "_id" : document["_id"] },
+                        { '$set' : { key : value } }
+                    )
+            elif key == "imageList":
+                newList = document[key]
+                pprint.pprint(newList)
+                print("\n* Change '{}'? (Y/N)".format(key))
+                choice = handleBool()
+                while choice:
+                    print("Add a new image to this list? (Y/N)")
+                    newImageChoice = handleBool()
+                    if newImageChoice:
+                        newImage = { "_id" : bson.ObjectId(), "link" : "", "thumbnail" : "", "hoverComment" : "" }
+
+                        print(" * image link:")
+                        newImage["link"] = presentChoiceString()
+                        print(" * image thumbnail:")
+                        newImage["thumbnail"] = presentChoiceString()
+                        print(" * hover comment:")
+                        newImage["hoverComment"] = presentChoiceString()
+                        newList.append(newImage)
+
+                        database[collectionName].find_one_and_update(
+                            { "_id" : document["_id"] },
+                            { '$set' : { key : newList } }
+                        )
+                    
+                    print("Remove an image from this list? (Y/N)")
+                    removeImageChoice = handleBool()
+                    if removeImageChoice:
+                        print(" * Which index to remove? (Starts at 1)")
+                        index = presentChoice()
+                        newList.pop(index - 1)
+
+                        database[collectionName].find_one_and_update(
+                            { "_id" : document["_id"] },
+                            { '$set' : { key : newList } }
+                        )
+                    
+                    if (not newImageChoice and not removeImageChoice):
+                        choice = False
     else:
         print("\nERROR : UNKNOWN COLLECTION NAME")
     print("\n* DOCUMENT UPDATED!")
