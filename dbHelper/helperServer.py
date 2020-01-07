@@ -1,4 +1,4 @@
-import pymongo, json, os, sys, datetime
+import pymongo, json, os, sys, datetime, pprint
 
 try:
     with open(os.path.join("..", "config", "default.json"), "r") as readFile:
@@ -28,19 +28,21 @@ def presentChoiceString():
     chosenOption = sys.stdin.readline()
     return chosenOption.rstrip()
 
-def waitForInput():
+def waitForInput(clear):
     input("\n Press Enter to continue...")
-    clearScreen()
+    if clear:
+        clearScreen()
 
 def listAllCollectionItems(collectionName):
     print("\n * Listing:")
     for item in database[collectionName].find({}, {"_id": 0, "__v": 0}):
-        print("\n {}".format(item))
-    waitForInput()
+        print("\n")
+        pprint.pprint(item)
+    waitForInput(True)
 
 def insertDocument(collectionName):
     if collectionName == 'experiences':
-        print("\n* ADDING A NEW EXPERIENCE")
+        print("\n* ADDING A NEW EXPERIENCE:")
         print(" * title:")
         title = presentChoiceString()
         print(" * type:")
@@ -76,22 +78,44 @@ def insertDocument(collectionName):
         pass
     else:
         print("\nERROR : UNKNOWN COLLECTION NAME")
-    waitForInput()
+    waitForInput(True)
 
 def findDocument(collectionName):
     print("\n* Search for key:")
     keySearchTerm = presentChoiceString().lower()
     print("* Search for value:")
     valueSearchTerm = presentChoiceString()
-    result = database[collectionName].find_one({ keySearchTerm : valueSearchTerm }, {"_id" : 0, "__v" : 0})
+    result = database[collectionName].find_one({ keySearchTerm : valueSearchTerm })
 
     if result != None:
         print("\n")
-        print(result)
+        pprint.pprint(result)
     else:
         print("\nNo results found for your query...")
-    waitForInput()
+    waitForInput(False)
     return result
+
+def modifyDocument(collectionName):
+    document = findDocument(collectionName)
+
+    if document == None:
+        return
+
+    if collectionName == 'experiences':
+        print("\n* MODIFYING AN EXPERIENCE:")
+        for key in list(document.keys()):
+            if (key != "_id" and key != "__v"):
+                print("* Change '{}' field? (Y/N)".format(key))
+                choice = presentChoiceString().lower()
+                choice = True if choice == 'y' else False
+                if choice == True:
+                    print("* New '{}':".format(key))
+                    value = presentChoiceString()
+                    database[collectionName].find_one_and_update(
+                        { "_id" : document["_id"] },
+                        { '$set' : { key : value } }
+                    )
+    print("\n* DOCUMENT UPDATED!")
 
 # START
 
@@ -128,7 +152,7 @@ while True:
             elif choice == 3:
                 insertDocument('experiences')
             elif choice == 4:
-                pass
+                modifyDocument('experiences')                
             elif choice == 5:
                 pass
             elif choice == 6:
