@@ -9,6 +9,10 @@ from helperFunctions import (
     handleBool
 )
 
+from imageUploader import (
+    uploadFolderImages
+)
+
 def listAllDocuments(database, collectionName):
     print("\n * Listing:")
     for item in database[collectionName].find({}, {"_id": 0, "__v": 0}):
@@ -89,22 +93,22 @@ def insertDocument(database, collectionName):
         print(" * Add images? (Y/N)")
         choice = handleBool()
         while choice:
-            newImage = { "link" : "", "thumbnail" : "", "hoverComment" : "" }
 
-            print("Does the image need to be uploaded? (Y/N)")
-            imageChoice = handleBool
+            print("Do the images need to be uploaded? (Y/N)")
+            imageChoice = handleBool()
 
             if imageChoice:
-                pass
+                imageList.extend(uploadFolderImages())
             else:    
+                newImage = { "link" : "", "thumbnail" : "", "hoverComment" : "" }
                 print(" * image link:")
                 newImage["link"] = presentChoiceString()
                 print(" * image thumbnail:")
                 newImage["thumbnail"] = presentChoiceString()
                 print(" * hover comment:")
                 newImage["hoverComment"] = presentChoiceString()
+                imageList.append(newImage)
 
-            imageList.append(newImage)
             print(" * Add another image? (Y/N)")
             choice = handleBool()
         
@@ -228,17 +232,24 @@ def modifyDocument(database, collectionName):
                 choice = handleBool()
                 while choice:
                     print("Add a new image to this list? (Y/N)")
-                    newImageChoice = handleBool()
-                    if newImageChoice:
-                        newImage = { "_id" : bson.ObjectId(), "link" : "", "thumbnail" : "", "hoverComment" : "" }
+                    imageChoice = handleBool()
+                    if imageChoice:
 
-                        print(" * image link:")
-                        newImage["link"] = presentChoiceString()
-                        print(" * image thumbnail:")
-                        newImage["thumbnail"] = presentChoiceString()
-                        print(" * hover comment:")
-                        newImage["hoverComment"] = presentChoiceString()
-                        newList.append(newImage)
+                        print("Do the images need to be uploaded? (Y/N)")
+                        uploadImagesChoice = handleBool()
+
+                        if uploadImagesChoice:
+                            newList.extend(uploadFolderImages())
+                        else:
+                            newImage = { "_id" : bson.ObjectId(), "link" : "", "thumbnail" : "", "hoverComment" : "" }
+
+                            print(" * image link:")
+                            newImage["link"] = presentChoiceString()
+                            print(" * image thumbnail:")
+                            newImage["thumbnail"] = presentChoiceString()
+                            print(" * hover comment:")
+                            newImage["hoverComment"] = presentChoiceString()
+                            newList.append(newImage)
 
                         database[collectionName].find_one_and_update(
                             { "_id" : document["_id"] },
@@ -257,7 +268,7 @@ def modifyDocument(database, collectionName):
                             { '$set' : { key : newList } }
                         )
                     
-                    if (not newImageChoice and not removeImageChoice):
+                    if (not imageChoice and not removeImageChoice):
                         choice = False
     else:
         print("\nERROR : UNKNOWN COLLECTION NAME")
