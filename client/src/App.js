@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Gallery from './pages/Gallery';
 import Projects from './pages/Projects';
 import Skills from './pages/Skills';
+import PageError from './pages/PageError';
 import { 
   BrowserRouter as Router, 
   Route,
@@ -59,6 +60,7 @@ class App extends Component {
         this.setState({ headerTitle: 'GALLERY' });
         break;
       default:
+        this.setState({ headerTitle: 'ERROR 404' });
         break;
     }
     this.setState({ headerItems: newHeader });
@@ -80,7 +82,7 @@ class App extends Component {
           <Header 
           headerItems={ this.state.headerItems }
           headerTitle={ this.state.headerTitle }
-          updateHeaderItems={this.updateHeaderItems}
+          updateHeaderItems={ this.updateHeaderItems }
           />
           <Switch>
             <Route exact path="/">
@@ -95,7 +97,9 @@ class App extends Component {
             <Route path="/gallery">
               <Gallery />
             </Route>
-            <Route /* component={404} */ ></Route>
+            <Route>
+              <PageError />
+            </Route>
           </Switch>
         </div>
       </Router>

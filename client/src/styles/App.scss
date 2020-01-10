@@ -55,3 +55,10 @@ section {
         padding: 0 1rem 2rem 1rem;
     }
 }
+
+.page-error {
+    @extend .standard-button;
+    @include main-font;
+    display: flex;
+    cursor: auto;
+}
