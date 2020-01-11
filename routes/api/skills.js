@@ -8,9 +8,15 @@ const SkillCategory = require('../../models/SkillCategory');
 // @access Public
 
 router.get('/', (req, res) => {
-    SkillCategory
-        .find()
-        .then(skillCategory => res.json(skillCategory));
+    SkillCategory.aggregate([
+    { $unwind : '$skillList' },
+    { $sort : { 'skillList.proficiency' : -1 }},
+    { $group : {
+        _id: '$_id',
+        name: { $last : '$name' },
+        icon: { $last : '$icon' },
+        skillList: { $push : '$skillList' }} }])
+    .then(skillCategory => res.json(skillCategory));
 });
 
 // @route  POST api/skills
