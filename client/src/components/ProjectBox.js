@@ -50,20 +50,28 @@ export default function ProjectBox(props) {
                     </div>
                     <div className="project-box-bottom">
                         <div className="info-box">
-                            <i className="fas fa-star" title="No. of stars on this repo"></i>
-                            { repository.stargazers_count }
+                            <a href={ repository.html_url + '/stargazers' } target="_blank" rel="noopener noreferrer">
+                                <i className="fas fa-star" title="No. of stars on this repo"></i>
+                                { repository.stargazers_count }
+                            </a>
                         </div>
                         <div className="info-box">
-                            <i className="fas fa-eye" title="No. of watches on this repo"></i>
-                            { repository.watchers_count }
+                            <a href={ repository.html_url + '/watchers' } target="_blank" rel="noopener noreferrer">
+                                <i className="fas fa-eye" title="No. of watches on this repo"></i>
+                                { repository.watchers_count }
+                            </a>
                         </div>
                         <div className="info-box" title="No. of forks of this repo">
-                            <i className="fas fa-code-branch"></i>
-                            { repository.forks_count }
+                            <a href={ repository.html_url + '/network/members' } target="_blank" rel="noopener noreferrer">
+                                <i className="fas fa-code-branch"></i>
+                                { repository.forks_count }
+                            </a>
                         </div>
                         <div className="info-box" title="No. of open issues on this repo">
-                            <i className="fas fa-exclamation-circle"></i>
-                            { repository.open_issues_count }
+                            <a href={ repository.html_url + '/issues' } target="_blank" rel="noopener noreferrer">
+                                <i className="fas fa-exclamation-circle"></i>
+                                { repository.open_issues_count }
+                            </a>
                         </div>
                     </div>
                 </div>
