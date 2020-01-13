@@ -60,7 +60,7 @@ def insertDocument(database, collectionName):
         print(" * Add skills? (Y/N)")
         choice = handleBool()
         while choice:
-            newSkill = { "name" : "", "proficiency" : 0, "icon" : ""}
+            newSkill = {"_id" : bson.ObjectId(), "name" : "", "proficiency" : 0, "icon" : ""}
 
             print(" * skill name:")
             newSkill["name"] = presentChoiceString()
@@ -100,7 +100,7 @@ def insertDocument(database, collectionName):
             if imageChoice:
                 imageList.extend(uploadFolderImages())
             else:    
-                newImage = { "link" : "", "thumbnail" : "", "hoverComment" : "" }
+                newImage = {"_id" : bson.ObjectId(), "link" : "", "thumbnail" : "", "hoverComment" : "" }
                 print(" * image link:")
                 newImage["link"] = presentChoiceString()
                 print(" * image thumbnail:")
@@ -191,6 +191,27 @@ def modifyDocument(database, collectionName):
                         print(" * skill icon:")
                         newSkill["icon"] = presentChoiceString()
                         newList.append(newSkill)
+
+                        database[collectionName].find_one_and_update(
+                            { "_id" : document["_id"] },
+                            { '$set' : { key : newList } }
+                        )
+                    
+                    print("Modify this list? (Y/N)")
+                    modifySkillChoice = handleBool()
+                    if modifySkillChoice:
+                        newSkill = { "_id" : "", "name" : "", "proficiency" : 0, "icon" : ""}
+                        print(" * Which index to modify? (Starts at 1)")
+                        index = presentChoice()
+
+                        newSkill["_id"] = newList[index - 1]["_id"]
+                        print(" * skill name:")
+                        newSkill["name"] = presentChoiceString()
+                        print(" * skill proficiency (1 to 3):")
+                        newSkill["proficiency"] = presentChoice()
+                        print(" * skill icon:")
+                        newSkill["icon"] = presentChoiceString()
+                        newList[index - 1] = newSkill
 
                         database[collectionName].find_one_and_update(
                             { "_id" : document["_id"] },
