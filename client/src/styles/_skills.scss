@@ -32,6 +32,8 @@
             @extend .skill-title;
             color: $alternative-text-color;
             background-color: $alternative-color;
+            box-shadow: $background-color-shade 0 2px;
+            border-top: $main-color 2px solid;
 
             i {
                 color: $alternative-text-color;
