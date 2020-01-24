@@ -19,17 +19,10 @@ export default function ProjectBox(props) {
                         </a> 
                         <i className="fas fa-clock"></i>
                         { ' Last updated ' + dateConvert(repository.updated_at) }
-                        { (repository.homepage !== '' && repository.homepage !== null) 
-                        ? 
-                            <p>Deployed: <a
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            href={ repository.homepage }>{ repository.homepage }</a></p>
-                        : 
-                            null 
-                        }
                     </div>
-                    <div className="details-box">
+                </div>
+                <div className="details-box">
+                    <div className="desc-link-group">
                         <p>{ repository.description }</p>
                         <div className="link-group">
                             <div>
@@ -40,16 +33,28 @@ export default function ProjectBox(props) {
                                 <i className="fas fa-key" title="URL for cloning via SSH"></i>
                                 <input type="text" readOnly value={ repository.ssh_url }></input>
                             </div>
+                            { (repository.homepage !== '' && repository.homepage !== null) 
+                            ?   
+                                <div className="deployed-at">
+                                    <i className="fas fa-external-link-alt" title="Deployed at"></i>
+                                    <a
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    href={ repository.homepage }>{ repository.homepage }</a>
+                                </div>
+                            : 
+                                null 
+                            }
                         </div>
-                        { repository.language !== null 
-                        ? 
-                            <div className="programming-language">
-                                <h4>{ repository.language }</h4>
-                            </div> 
-                        : 
-                            null 
-                        }
                     </div>
+                    { repository.language !== null 
+                    ? 
+                        <div className="programming-language">
+                            <h4>{ repository.language }</h4>
+                        </div> 
+                    : 
+                        null
+                    }
                     <div className="project-box-bottom">
                         <div className="info-box">
                             <a href={ repository.html_url + '/stargazers' } target="_blank" rel="noopener noreferrer">

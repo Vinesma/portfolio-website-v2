@@ -5,7 +5,7 @@ $background-color-shade: #5bb6c6;
 $main-color: #fff;
 $standard-button-color: #fff;
 $sec-button-color: #ec5353;
-$sec-color: #ec5353;
+$sec-color: #d04141;
 $text-color: #494949;
 $decal-color: #ebebeb;
 $alternative-color: #f5f5f5;
@@ -48,17 +48,23 @@ $medium-screen: 1134px;
     }
 }
 
+@mixin small-font {
+  font-family: 'Lexend Deca', sans-serif;
+  font-size: 0.8rem;
+  color: $text-color;
+}
+
 /* ANIMATION */
 
 @mixin box-shadow-h {
-    box-shadow: 0.2rem 0.3rem $sec-color;
+    box-shadow: 0.2rem 0.3rem $sec-button-color;
     -webkit-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
 }
 
 @mixin border-left-h {
-    border-left: $sec-color 0.5rem solid;
+    border-left: $sec-button-color 0.5rem solid;
     -webkit-transition: all 0.2s ease;
     -o-transition: all 0.2s ease;
     transition: all 0.2s ease;
