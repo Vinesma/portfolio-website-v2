@@ -1,11 +1,12 @@
-import React, { Fragment } from 'react'
+import React, { Fragment } from 'react';
+import moment from 'moment';
 
 export default function ProjectBox(props) {
     const repository = props.repository;
 
     function dateConvert(date){
-        const newDate = new Date(date);
-        return newDate.toLocaleString();
+        const repositoryDate = new Date(date);
+        return moment(repositoryDate).fromNow();
     }
 
     return (
@@ -16,7 +17,8 @@ export default function ProjectBox(props) {
                         <a href={ repository.html_url } target="_blank" rel="noopener noreferrer">
                             <h3>{ repository.name }</h3>
                         </a> 
-                        { ' Last updated: ' + dateConvert(repository.updated_at) }
+                        <i className="fas fa-clock"></i>
+                        { ' Last updated ' + dateConvert(repository.updated_at) }
                         { (repository.homepage !== '' && repository.homepage !== null) 
                         ? 
                             <p>Deployed: <a
