@@ -13,7 +13,6 @@ export default function ProjectBox(props) {
     }
 
     function copyToClipboard(e){
-        console.log(e.target.previousSibling.childNodes[2]);
         const element = e.target.previousSibling.childNodes[2];
         element.select();
         element.setSelectionRange(0, 99999);
