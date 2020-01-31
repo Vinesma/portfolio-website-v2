@@ -8,6 +8,7 @@ Technologies used:
 
 * React
 * SASS
+* dayjs
 * Github API
 * [Square Loader component](https://codepen.io/tashfene/pen/raEqrJ)
 
