@@ -1,12 +1,15 @@
 import React, { Fragment } from 'react';
-import moment from 'moment';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+
+dayjs.extend(relativeTime);
 
 export default function ProjectBox(props) {
     const repository = props.repository;
 
     function dateConvert(date){
         const repositoryDate = new Date(date);
-        return moment(repositoryDate).fromNow();
+        return dayjs(repositoryDate).fromNow();
     }
 
     function copyToClipboard(e){
