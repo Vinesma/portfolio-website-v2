@@ -26,6 +26,12 @@ $medium-screen: 1134px;
   }
 }
 
+@mixin small-font{
+  font-family: 'Lexend Mega', sans-serif;
+  font-size: 0.9rem;
+  color: $main-color;
+}
+
 @mixin main-font {
     font-family: 'Lexend Deca', sans-serif;
     font-size: 1.0rem;

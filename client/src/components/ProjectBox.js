@@ -9,6 +9,14 @@ export default function ProjectBox(props) {
         return moment(repositoryDate).fromNow();
     }
 
+    function copyToClipboard(e){
+        console.log(e.target.previousSibling.childNodes[2]);
+        const element = e.target.previousSibling.childNodes[2];
+        element.select();
+        element.setSelectionRange(0, 99999);
+        document.execCommand('copy');
+    }
+
     return (
         <Fragment>
             <div className="project-box">
@@ -25,13 +33,29 @@ export default function ProjectBox(props) {
                     <div className="desc-link-group">
                         <p>{ repository.description }</p>
                         <div className="link-group">
-                            <div>
-                                <i className="fas fa-link" title="URL for cloning via HTTP"></i>
-                                <input type="text" readOnly value={ repository.clone_url }></input>
+                            <div className="repo-clone-group">
+                                <div>
+                                    <i className="fas fa-link" title="URL for cloning via HTTP"></i>
+                                    <input type="text" readOnly value={ repository.clone_url }></input>
+                                </div>
+                                <button
+                                className="tertiary-button"
+                                onClick={copyToClipboard}>
+                                    <i className="fas fa-copy"></i>
+                                    Copy
+                                </button>
                             </div>
-                            <div>
-                                <i className="fas fa-key" title="URL for cloning via SSH"></i>
-                                <input type="text" readOnly value={ repository.ssh_url }></input>
+                            <div className="repo-clone-group">
+                                <div>
+                                    <i className="fas fa-key" title="URL for cloning via SSH"></i>
+                                    <input type="text" readOnly value={ repository.ssh_url }></input>
+                                </div>
+                                <button
+                                className="tertiary-button"
+                                onClick={copyToClipboard}>
+                                    <i className="fas fa-copy"></i>
+                                    Copy
+                                </button>
                             </div>
                             { (repository.homepage !== '' && repository.homepage !== null) 
                             ?   

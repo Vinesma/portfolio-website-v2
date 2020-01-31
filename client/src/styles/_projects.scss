@@ -60,24 +60,33 @@
                 .link-group{
                     margin-top: 1.2rem;
     
-                    div {
+                    .repo-clone-group {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
                         margin-top: 0.5rem;
+
+                        div {
+                            width: 80%;
+                        }
                     }
-    
+
                     i {
                         margin-right: 0.5rem;
                     }
     
                     input {
                         @include small-font;
-                        width: 95%;
                         border: none;
+                        width: 80%;
                         border-left: $sec-color 0.3rem solid;
                         padding: 0.2rem;
                     }
-    
-                    .deployed-at{
-                        a{
+
+                    .deployed-at {
+                        margin-top: 0.5rem;
+
+                        a {
                             @include small-font;
                             border-left: $sec-color 0.3rem solid;
                             padding-left: 0.2rem;

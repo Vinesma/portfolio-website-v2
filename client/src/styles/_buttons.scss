@@ -71,3 +71,20 @@
         @include border-left-h;
     }
 }
+
+.tertiary-button {
+    @include small-font;
+    @extend .standard-button;
+    padding: 0.4rem 0.5rem;
+    border: $decal-color 1px solid;
+    width: auto;
+
+    i {
+        color: $alternative-text-color;
+    }
+
+    @media only screen and (max-width: $medium-screen) {
+        display: flex;
+        align-items: center;
+    }
+}
