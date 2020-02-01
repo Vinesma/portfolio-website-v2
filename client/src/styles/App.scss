@@ -6,10 +6,12 @@
 @import 'gallery';
 @import 'projects';
 @import 'skills';
+@import 'resume';
+@import 'generics';
 
 /* GENERAL */
 
-.App {
+body {
     background-color: $background-color;
     min-height: 100vh;
 }

@@ -1,0 +1,86 @@
+/* GENERICS */
+
+/* container */
+.generic-section-title {
+    @include sec-font;
+    @extend .standard-button;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    cursor: auto;
+}
+
+.generic-container {
+    padding: 0.5rem 0.6rem;
+    background-color: $main-color;
+}
+
+.make-inline {
+    margin: 1rem 0 0 2rem;
+
+    @media only screen and (max-width: $medium-screen) {
+        margin-left: 1.2rem;
+    }
+}
+
+/* flex */
+
+.vertical-aligned-flex{
+    display: flex;
+    align-items: center;
+}
+
+.left-aligned {
+    justify-content: start;
+}
+
+/* positioning */
+
+.space-top-small {
+    margin-top: 0.5rem;
+}
+
+.space-top-med {
+    margin-top: 1rem;
+}
+
+.space-top-big {
+    margin-top: 1.5rem;
+}
+
+/* borders */
+
+.left-solid-border {
+    padding-left: 0.3rem;
+    border-left: $sec-button-color 0.5rem solid;
+}
+
+.left-solid-border-l {
+    padding-left: 0.3rem;
+    border-left: $sec-button-color 0.3rem solid;
+}
+
+.right-solid-border-l {
+    padding-right: 0.3rem;
+    border-right: $sec-button-color 0.3rem solid;
+}
+
+/* icons */
+
+i {
+    margin-right: 0.5rem;
+}
+
+/*primary*/
+.p-icon{
+    color: $sec-color;
+}
+/*secondary*/
+.s-icon{
+    color: $sec-button-color;
+}
+/*unimportant*/
+.u-icon{
+    color: $text-color;
+}

@@ -6,6 +6,7 @@ import Gallery from './pages/Gallery';
 import Projects from './pages/Projects';
 import Skills from './pages/Skills';
 import PageError from './pages/PageError';
+import Resume from './pages/Resume';
 import { 
   BrowserRouter as Router, 
   Route,
@@ -79,23 +80,44 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Header 
-          headerItems={ this.state.headerItems }
-          headerTitle={ this.state.headerTitle }
-          updateHeaderItems={ this.updateHeaderItems }
-          />
           <Switch>
             <Route exact path="/">
+              <Header
+              headerItems={ this.state.headerItems }
+              headerTitle={ this.state.headerTitle }
+              updateHeaderItems={ this.updateHeaderItems }
+              />
               <Home />
             </Route>
             <Route path="/projects">
+              <Header 
+              headerItems={ this.state.headerItems }
+              headerTitle={ this.state.headerTitle }
+              updateHeaderItems={ this.updateHeaderItems }
+              />
               <Projects />
             </Route>
             <Route path="/skills">
+              <Header 
+              headerItems={ this.state.headerItems }
+              headerTitle={ this.state.headerTitle }
+              updateHeaderItems={ this.updateHeaderItems }
+              />
               <Skills />
             </Route>
             <Route path="/gallery">
+              <Header 
+              headerItems={ this.state.headerItems }
+              headerTitle={ this.state.headerTitle }
+              updateHeaderItems={ this.updateHeaderItems }
+              />
               <Gallery />
+            </Route>
+            <Route path="/resume">
+              <Resume language={'EN'} />
+            </Route>
+            <Route path="/resume_pt">
+              <Resume language={'PT'} />
             </Route>
             <Route>
               <PageError />
