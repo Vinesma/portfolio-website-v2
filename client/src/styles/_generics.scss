@@ -1,31 +1,45 @@
 /* GENERICS */
 
-/* container */
-.generic-section-title {
-    @include sec-font;
-    @extend .standard-button;
+/* containers */
+
+.container {
+    padding: 0.5rem 0.6rem;
+    background-color: $main-color;
+    border: none;
+
+    @media only screen and (max-width: $medium-screen) {
+        width: 100%;
+    }
+}
+
+.inline {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    background-color: transparent;
+    padding: 0;
+}
+
+.inline .container {
+    width: 98%;
+
+    @media only screen and (max-width: $medium-screen) {
+        width: 96%;
+    }
+}
+
+.section-title {
+    @include sec-font;
+    @extend .container;
     margin-bottom: 0.5rem;
     cursor: auto;
 }
 
-.generic-container {
-    padding: 0.5rem 0.6rem;
-    background-color: $main-color;
+.width-full{
+    width: 100%;
 }
 
-.inline-container {
-    @extend .generic-container;
-    margin: 1rem 0 0 2rem;
-
-    @media only screen and (max-width: $medium-screen) {
-        margin-left: 1.2rem;
-    }
-}
-
-/* section */
+/* SECTION */
 
 section.pad {
     padding: 0 3rem 0 3rem;
@@ -35,29 +49,52 @@ section.pad {
     }
 }
 
-/* flex */
+section.pushdown {
+    padding-bottom: 4rem;
+}
 
-.vertical-aligned-flex{
+/* FLEX */
+
+.flex{
     display: flex;
+}
+
+.flex.vertical-align-center{
     align-items: center;
 }
 
-.left-aligned {
+.flex.left-align {
     justify-content: start;
 }
 
-/* positioning */
+.flex.between-align {
+    justify-content: space-between;
+}
+
+/* POSITIONING */
 
 .space-top-small {
     margin-top: 0.5rem;
+
+    @media only screen and (max-width: $medium-screen) {
+        margin-top: 0.8rem;
+    }
 }
 
 .space-top-med {
     margin-top: 1rem;
+
+    @media only screen and (max-width: $medium-screen) {
+        margin-top: 1.2rem;
+    }
 }
 
 .space-top-big {
     margin-top: 1.5rem;
+
+    @media only screen and (max-width: $medium-screen) {
+        margin-top: 1.8rem;
+    }
 }
 
 .space-top-section-small {
@@ -72,7 +109,7 @@ section.pad {
     margin-top: 10vh;
 }
 
-/* borders */
+/* BORDERS */
 
 .no-border {
     border: none;
@@ -104,7 +141,7 @@ section.pad {
     border-bottom: 2px solid#ebebeb;
 }
 
-/* icons */
+/* ICONS */
 
 i {
     margin-right: 0.5rem;

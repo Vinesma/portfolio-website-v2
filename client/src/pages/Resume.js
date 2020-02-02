@@ -32,10 +32,22 @@ class Resume extends Component {
                 description: 'Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum',
                 description_pt: 'testando testando testando testando testando',
             },
+            {
+                school: 'Faculdade de Ciências Aplicadas de Petrolina - FACAPE',
+                degree: 'Bachelor\'s degree',
+                degree_pt: 'Bacharelado',
+                field: 'Computer Science',
+                field_pt: 'Ciência da Computação',
+                startDate: '2017-08-01T00:00:00.000+00:00',
+                endDate: '2018-02-01T00:00:00.000+00:00',
+                description: 'Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum',
+                description_pt: 'testando testando testando testando testando',
+            },
         ],
         others: [
             {
-                description: '',
+                description: 'Driver\'s licence',
+                description_pt: 'Carteira de Habilitação, tipo B'
             },
         ],
         skillCategory: [
@@ -93,7 +105,7 @@ class Resume extends Component {
                 comment_pt: 'Worked on a database using winThor. Provided hardware and software maintenance.',
                 from: '2017-08-01T00:00:00.000+00:00',
                 to: '2018-02-01T00:00:00.000+00:00',
-                currentlyEmployed: false,
+                currentlyEmployed: true,
             }
         ],
     }
@@ -117,7 +129,7 @@ class Resume extends Component {
                 />
             </section>
             <section className="space-top-section-med pad">
-                <div className="generic-section-title left-aligned left-solid-border space-top-big">
+                <div className="section-title flex left-aligned left-solid-border space-top-big">
                     <i className="fas fa-tools p-icon"></i>
                     <h4>{ language === 'EN' ? 'Skills' : 'Conhecimentos' }</h4>
                 </div>
@@ -133,7 +145,7 @@ class Resume extends Component {
                 { this.state.loadingExperiences
                 ? null
                 :
-                <div className="generic-section-title left-aligned left-solid-border">
+                <div className="section-title flex left-aligned left-solid-border">
                     <i className="fas fa-briefcase"></i>
                     <h4>
                         { language === 'EN' ? 'Work Experience' : 'Experiência'}
@@ -149,10 +161,23 @@ class Resume extends Component {
                 )) 
                 }
             </section>
-            <section className="space-top-section-med pad">
-                <div className="generic-section-title left-aligned left-solid-border space-top-big">
+            <section className="space-top-section-med pad pushdown">
+                <div className="section-title flex left-aligned left-solid-border space-top-big">
                     <i className="fas fa-question-circle p-icon"></i>
                     <h4>{ language === 'EN' ? 'Others' : 'Outros' }</h4>
+                </div>
+                <div className="inline">
+                    { this.state.others.map((item, index) => (
+                        <div className="container">
+                            <p>
+                            { language === 'EN'
+                            ? item.description
+                            : item.description_pt
+                            }
+                            </p>
+                        </div>
+                    )) 
+                    }   
                 </div>
             </section>
         </section>
