@@ -49,6 +49,10 @@ class Resume extends Component {
                 description: 'Driver\'s licence',
                 description_pt: 'Carteira de Habilitação, tipo B'
             },
+            {
+                description: 'Driver\'s licence',
+                description_pt: 'Carteira de Habilitação, tipo B'
+            },
         ],
         skillCategory: [
             {
@@ -99,14 +103,16 @@ class Resume extends Component {
         experience: [
             {
                 title: 'Database Assistant',
+                title_pt: 'Assistente de Banco de Dados',
                 type: 'Intern',
+                type_pt: 'Estagiário',
                 company: 'Atac Distribuidora',
                 comment: 'Worked on a database using winThor. Provided hardware and software maintenance.',
-                comment_pt: 'Worked on a database using winThor. Provided hardware and software maintenance.',
+                comment_pt: 'Trabalhei em um banco de dados utilizando WinThor.',
                 from: '2017-08-01T00:00:00.000+00:00',
                 to: '2018-02-01T00:00:00.000+00:00',
                 currentlyEmployed: true,
-            }
+            },
         ],
     }
 
@@ -133,13 +139,17 @@ class Resume extends Component {
                     <i className="fas fa-tools p-icon"></i>
                     <h4>{ language === 'EN' ? 'Skills' : 'Conhecimentos' }</h4>
                 </div>
-                { this.state.skillCategory.map(skillCategory => (
-                    <SkillSection
-                    key={skillCategory._id}
-                    skillCategory={skillCategory}
-                    />
-                ))
-                }
+                <div className="inline">
+                    <div className="container-no-bg">
+                        { this.state.skillCategory.map(skillCategory => (
+                            <SkillSection
+                            key={skillCategory._id}
+                            skillCategory={skillCategory}
+                            />
+                        ))
+                        }
+                    </div>
+                </div>
             </section>
             <section className="space-top-section-med pad">                    
                 { this.state.loadingExperiences
@@ -152,9 +162,10 @@ class Resume extends Component {
                     </h4>
                 </div> 
                 }
-                { this.state.experience.map(experience => (
+                { this.state.experience.map((experience, index) => (
                     <ExperienceSection
                     key={ experience._id }
+                    index={index}
                     experience={ experience }
                     language={ language }
                     />
@@ -168,7 +179,7 @@ class Resume extends Component {
                 </div>
                 <div className="inline">
                     { this.state.others.map((item, index) => (
-                        <div className="container">
+                        <div className={ index > 0 ? 'container space-top-med' : 'container'}>
                             <p>
                             { language === 'EN'
                             ? item.description

@@ -14,8 +14,7 @@ export default class Projects extends Component {
 
         axios.get('https://api.github.com/users/Vinesma/repos')
         .then(res => {
-            let sortedRepos = res.data;
-            sortedRepos = this.sortReposByDate(sortedRepos);
+            let sortedRepos = this.sortReposByDate(res.data);
             this.setState({ loading: false });
             this.setState({ repositories: sortedRepos });
         })

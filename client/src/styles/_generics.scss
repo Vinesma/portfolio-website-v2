@@ -12,6 +12,12 @@
     }
 }
 
+.container-no-bg {
+    @extend .container;
+    padding: 0;
+    background-color: transparent;
+}
+
 .inline {
     display: flex;
     flex-wrap: wrap;
@@ -20,7 +26,7 @@
     padding: 0;
 }
 
-.inline .container {
+.inline .container,.inline .container-no-bg{
     width: 98%;
 
     @media only screen and (max-width: $medium-screen) {
@@ -37,6 +43,10 @@
 
 .width-full{
     width: 100%;
+}
+
+.add-pad{
+    padding: 0.3rem;
 }
 
 /* SECTION */

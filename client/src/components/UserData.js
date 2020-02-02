@@ -58,7 +58,7 @@ export default function UserData(props){
                         <div className="flex vertical-align-center">
                         <i className="fas fa-square-full s-icon"></i>
                         <span className="left-solid-border-l width-full">
-                            { educationItem.school !== null
+                            { educationItem.school !== ''
                             ? 
                                 <span className="flex vertical-align-center u-bottom-solid-border-l">
                                     <i className="fas fa-school u-icon"></i>
@@ -66,7 +66,7 @@ export default function UserData(props){
                                 </span>
                             : null
                             }
-                            { educationItem.degree !== null && educationItem.degree_pt !== null
+                            { educationItem.degree !== '' && educationItem.degree_pt !== ''
                             ?
                                 <p className="space-top-small">
                                     { language === 'EN'
@@ -94,9 +94,13 @@ export default function UserData(props){
                                 </p>
                             : null
                             }
-                            { educationItem.description !== null
+                            { educationItem.description !== ''
                             ?
-                                <p className="space-top-med u-border width-full">{ language === 'EN' ? educationItem.description : educationItem.description_pt}</p>
+                                <p
+                                className="space-top-med u-border width-full add-pad"
+                                >
+                                { language === 'EN' ? educationItem.description : educationItem.description_pt}
+                                </p>
                             : null
                             }
                         </span>
