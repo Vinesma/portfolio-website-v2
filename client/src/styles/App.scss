@@ -46,18 +46,6 @@ a {
     text-decoration: none;
 }
 
-/* SECTIONS */
-
-section {
-    margin-top: 10vh;
-    padding: 0 3rem 0 3rem;
-
-    @media only screen and (max-width: $medium-screen) {
-        margin-top: 10vh;
-        padding: 0 1rem 2rem 1rem;
-    }
-}
-
 .page-error {
     @extend .standard-button;
     @include main-font;

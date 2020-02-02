@@ -2,6 +2,7 @@ import React from 'react'
 
 export default function ExperienceSection(props) {
     const experience = props.experience;
+    const language = props.language;
 
     function dateConvert(date){
         const newDate = new Date(date);
@@ -9,26 +10,39 @@ export default function ExperienceSection(props) {
     }
 
     return (
-        <div className="experience-box">
-            <div className="experience-title">
-                <h3>{ experience.title }{ experience.type !== '' ? ' - ' + experience.type : null }</h3>
-                { (experience.from !== null && experience.to !== null)
+        <div className="inline-container">
+            <div>
+                <p className="u-bottom-solid-border-l">
+                    { experience.title }
+                    { experience.type !== '' ? ' - ' + experience.type : null }
+                </p>
+                { experience.from !== null && experience.to !== null
                 ?
-                    <h5><i className="fas fa-clock"></i>{ 'From ' + dateConvert(experience.from) + ' to ' + dateConvert(experience.to) }</h5>
-                :
-                    null
+                    <span className="space-top-small vertical-aligned-flex">
+                        <i className="fas fa-clock u-icon"></i>
+                        <p>
+                            { 'From ' + dateConvert(experience.from) + 
+                            ' to ' + dateConvert(experience.to) }
+                        </p>
+                    </span>
+                : null
                 }
-                { experience.company !== '' ? <p>Company: { experience.company }</p> : null }                
+                { experience.company !== ''
+                ? 
+                    <span className="space-top-small vertical-aligned-flex">
+                        <i className="fas fa-building u-icon"></i>
+                        <p>{ experience.company }</p>
+                    </span>
+                : null
+                }                
             </div>
-            <div className="comment">
-                <p>{ experience.comment }</p>
+                <p className="space-top-med">{ experience.comment }</p>
                 { experience.currentlyEmployed
                 ? 
                     <p><i className="fas fa-user-check"></i>(I am currently employed here)</p>
                 :
                     null 
                 }
-            </div>
         </div>
     )
 }

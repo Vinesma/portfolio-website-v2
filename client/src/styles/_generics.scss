@@ -16,11 +16,22 @@
     background-color: $main-color;
 }
 
-.make-inline {
+.inline-container {
+    @extend .generic-container;
     margin: 1rem 0 0 2rem;
 
     @media only screen and (max-width: $medium-screen) {
         margin-left: 1.2rem;
+    }
+}
+
+/* section */
+
+section.pad {
+    padding: 0 3rem 0 3rem;
+
+    @media only screen and (max-width: $medium-screen) {
+        padding: 0 1rem 2rem 1rem;
     }
 }
 
@@ -49,7 +60,29 @@
     margin-top: 1.5rem;
 }
 
+.space-top-section-small {
+    margin-top: 2vh;
+}
+
+.space-top-section-med {
+    margin-top: 7vh;
+}
+
+.space-top-section-big {
+    margin-top: 10vh;
+}
+
 /* borders */
+
+.no-border {
+    border: none;
+    border-radius: none;
+}
+
+.u-border {
+    border: $decal-color solid 2px;
+    border-radius: 3px;
+}
 
 .left-solid-border {
     padding-left: 0.3rem;
@@ -64,6 +97,11 @@
 .right-solid-border-l {
     padding-right: 0.3rem;
     border-right: $sec-button-color 0.3rem solid;
+}
+
+.u-bottom-solid-border-l{
+    padding-bottom: 0.3rem;
+    border-bottom: 2px solid#ebebeb;
 }
 
 /* icons */

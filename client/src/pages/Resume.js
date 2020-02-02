@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import SkillSection from '../components/SkillSection';
 import ExperienceSection from '../components/ExperienceSection';
-import Loader from '../components/Loader';
 import UserData from '../components/UserData';
 
 class Resume extends Component {
     state = {
-        loadingSkills: false,
-        loadingExperiences: false,
         personalData: {
             name: 'Otavio Cornelio da Silva',
             nationality: 'Brazilian',
@@ -34,7 +31,11 @@ class Resume extends Component {
                 endDate: '2018-02-01T00:00:00.000+00:00',
                 description: 'Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum',
                 description_pt: 'testando testando testando testando testando',
-                activities: 'FATI, Lixo Eletrônico',
+            },
+        ],
+        others: [
+            {
+                description: '',
             },
         ],
         skillCategory: [
@@ -107,32 +108,52 @@ class Resume extends Component {
                 <h4>{ language === 'EN' ? 'Resume' : 'Currículo'}</h4>
             </div>
         </div>
-        <section className="resume-section">
-            <section className="personal-data-section">
-                <UserData personalData={ this.state.personalData } language={language}/>
+        <section className="space-top-section-big pad">
+            <section className="pad">
+                <UserData
+                personalData={ this.state.personalData }
+                education={ this.state.education }
+                language={ language }
+                />
             </section>
-            <section className="skills-section">
-                { this.state.loadingSkills ? <Loader /> : null }
+            <section className="space-top-section-med pad">
+                <div className="generic-section-title left-aligned left-solid-border space-top-big">
+                    <i className="fas fa-tools p-icon"></i>
+                    <h4>{ language === 'EN' ? 'Skills' : 'Conhecimentos' }</h4>
+                </div>
                 { this.state.skillCategory.map(skillCategory => (
-                    <SkillSection key={skillCategory._id} skillCategory={skillCategory}/>
+                    <SkillSection
+                    key={skillCategory._id}
+                    skillCategory={skillCategory}
+                    />
                 ))
                 }
             </section>
-            <section className="experience-section">                    
+            <section className="space-top-section-med pad">                    
                 { this.state.loadingExperiences
                 ? null
                 :
-                <div className="experience-section-title">
-                    <div>
-                        <i className="fas fa-briefcase"></i>
-                        { language === 'EN' ? 'Work Experience' : 'Outras Experiências'}
-                    </div>
+                <div className="generic-section-title left-aligned left-solid-border">
+                    <i className="fas fa-briefcase"></i>
+                    <h4>
+                        { language === 'EN' ? 'Work Experience' : 'Experiência'}
+                    </h4>
                 </div> 
                 }
                 { this.state.experience.map(experience => (
-                    <ExperienceSection key={experience._id} experience={experience} />
+                    <ExperienceSection
+                    key={ experience._id }
+                    experience={ experience }
+                    language={ language }
+                    />
                 )) 
                 }
+            </section>
+            <section className="space-top-section-med pad">
+                <div className="generic-section-title left-aligned left-solid-border space-top-big">
+                    <i className="fas fa-question-circle p-icon"></i>
+                    <h4>{ language === 'EN' ? 'Others' : 'Outros' }</h4>
+                </div>
             </section>
         </section>
         </>

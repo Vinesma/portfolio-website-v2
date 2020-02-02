@@ -4,17 +4,24 @@ export default function UserData(props){
     const language = props.language;
 
     const userData = props.personalData;
+    const education = props.education;
+    
     const nationality = language === 'EN' ? userData.nationality : userData.nationality_pt;
     const maritalStatus = language === 'EN' ? userData.maritalStatus : userData.maritalStatus_pt;
     const age = language === 'EN' ? userData.age + ' years old' : userData.age + ' anos';
 
+    function dateConvert(date){
+        const newDate = new Date(date);
+        return  newDate.getMonth().toString() + '/' + newDate.getFullYear().toString();
+    }
+
     return(
         <>
             <div className="generic-section-title left-aligned left-solid-border">
-                <i className="fas fa-user s-icon"></i>
+                <i className="fas fa-user p-icon"></i>
                 <h4>{ language === 'EN' ? 'Personal Data' : 'Dados Pessoais' }</h4>
             </div>
-            <div className="generic-container make-inline">
+            <div className="inline-container">
                 <h3>{ userData.name }</h3>
                 <p className="space-top-small">{ nationality }, { maritalStatus }, { age }</p>
                 <div className="space-top-big vertical-aligned-flex">
@@ -31,13 +38,71 @@ export default function UserData(props){
                     </span>
                 </div>
                 <div className="space-top-mid">
-                    <span className="vertical-aligned-flex">
-                        <i className="fas fa-envelope s-icon"></i><p className="left-solid-border-l space-top-small">{ userData.email }</p>
+                    <span className="vertical-aligned-flex space-top-small">
+                        <i className="fas fa-envelope s-icon"></i><p className="left-solid-border-l">{ userData.email }</p>
                     </span>
-                    <span className="vertical-aligned-flex">
-                        <i className="fas fa-external-link-alt s-icon"></i><p className="left-solid-border-l space-top-small"> { userData.website }</p>
+                    <span className="vertical-aligned-flex space-top-small">
+                        <i className="fas fa-external-link-alt s-icon"></i><p className="left-solid-border-l"> { userData.website }</p>
                     </span>
                 </div>
+            </div>
+            <div className="generic-section-title left-aligned left-solid-border space-top-big">
+                <i className="fas fa-graduation-cap p-icon"></i>
+                <h4>{ language === 'EN' ? 'Education' : 'Formação' }</h4>
+            </div>
+            <div className="inline-container">
+                { education.map(educationItem => (
+                    <div className="vertical-aligned-flex">
+                    <i className="fas fa-square-full s-icon"></i>
+                    <span className="left-solid-border-l">
+                        { educationItem.school !== null
+                        ? 
+                            <span className="vertical-aligned-flex u-bottom-solid-border-l">
+                                <i className="fas fa-school u-icon"></i>
+                                <p>{ educationItem.school }</p>
+                            </span>
+                        : null
+                        }
+                        { educationItem.degree !== null && educationItem.degree_pt !== null
+                        ?
+                            <p className="space-top-small">
+                                { language === 'EN'
+                                ? 
+                                    educationItem.degree + ' in ' + educationItem.field
+                                : 
+                                    educationItem.degree_pt + ' em ' + educationItem.field_pt
+                                }
+                            </p>
+                        :
+                            <p className="space-top-small">
+                                { language === 'EN'
+                                ? educationItem.field
+                                : educationItem.field_pt
+                                }
+                            </p>
+                        }
+                        { educationItem.startDate !== null && educationItem.endDate !== null
+                        ?
+                            <p className="space-top-small">
+                                { language === 'EN' ? 'From ' : 'De '}
+                                { dateConvert(educationItem.startDate) }
+                                { language === 'EN' ? ' to ' : ' à '}
+                                { dateConvert(educationItem.endDate) }
+                            </p>
+                        : null
+                        }
+                        { educationItem.description !== null
+                        ?
+                            <input className="space-top-med u-border"
+                            value={ language === 'EN' ? educationItem.description : educationItem.description_pt}
+                            readOnly
+                            ></input>
+                        : null
+                        }
+                    </span>
+                    </div>
+                ))
+                }
             </div>
         </>
     )

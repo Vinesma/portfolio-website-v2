@@ -2,7 +2,7 @@ import React from 'react';
 
 function Home() {
     return (
-        <section className="home-section">
+        <section className="home-section pad">
             <div className="home-section-image">
                 <img src="./img/meimg.png" alt="Profile"></img>
             </div>
