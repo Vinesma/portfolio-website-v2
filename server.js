@@ -20,6 +20,7 @@ mongoose
 app.use('/api/skills', require('./routes/api/skills'));
 app.use('/api/experiences', require('./routes/api/experiences'));
 app.use('/api/images', require('./routes/api/images'));
+app.use('/api/education', require('./routes/api/education'));
 
 if (process.env.NODE_ENV === 'production') {
     // Set static folder

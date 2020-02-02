@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SkillSection from '../components/SkillSection';
 import ExperienceSection from '../components/ExperienceSection';
 import UserData from '../components/UserData';
+import axios from 'axios';
 
 class Resume extends Component {
     state = {
@@ -20,30 +21,7 @@ class Resume extends Component {
             email: 'vinesma.work@gmail.com',
             website: 'https://github.com/Vinesma'            
         },
-        education: [
-            {
-                school: 'Faculdade de Ciências Aplicadas de Petrolina - FACAPE',
-                degree: 'Bachelor\'s degree',
-                degree_pt: 'Bacharelado',
-                field: 'Computer Science',
-                field_pt: 'Ciência da Computação',
-                startDate: '2017-08-01T00:00:00.000+00:00',
-                endDate: '2018-02-01T00:00:00.000+00:00',
-                description: 'Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum',
-                description_pt: 'testando testando testando testando testando',
-            },
-            {
-                school: 'Faculdade de Ciências Aplicadas de Petrolina - FACAPE',
-                degree: 'Bachelor\'s degree',
-                degree_pt: 'Bacharelado',
-                field: 'Computer Science',
-                field_pt: 'Ciência da Computação',
-                startDate: '2017-08-01T00:00:00.000+00:00',
-                endDate: '2018-02-01T00:00:00.000+00:00',
-                description: 'Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum',
-                description_pt: 'testando testando testando testando testando',
-            },
-        ],
+        education: [],
         others: [
             {
                 description: 'Driver\'s licence',
@@ -54,66 +32,28 @@ class Resume extends Component {
                 description_pt: 'Carteira de Habilitação, tipo B'
             },
         ],
-        skillCategory: [
-            {
-                id: 1,
-                name: 'Programming',
-                icon: 'fas fa-code',
-                skillList: [
-                    {
-                        name: 'Python',
-                        proficiency: 3,
-                        icon: '',
-                    },
-                    {
-                        name: 'Python',
-                        proficiency: 3,
-                        icon: '',
-                    },
-                    {
-                        name: 'Python',
-                        proficiency: 2,
-                        icon: '',
-                    }
-                ],
-            },
-            {
-                id: 1,
-                name: 'Programming',
-                icon: 'fas fa-code',
-                skillList: [
-                    {
-                        name: 'Python',
-                        proficiency: 3,
-                        icon: '',
-                    },
-                    {
-                        name: 'Python',
-                        proficiency: 2,
-                        icon: '',
-                    },
-                    {
-                        name: 'Python',
-                        proficiency: 1,
-                        icon: '',
-                    }
-                ],
-            },
-        ],
-        experience: [
-            {
-                title: 'Database Assistant',
-                title_pt: 'Assistente de Banco de Dados',
-                type: 'Intern',
-                type_pt: 'Estagiário',
-                company: 'Atac Distribuidora',
-                comment: 'Worked on a database using winThor. Provided hardware and software maintenance.',
-                comment_pt: 'Trabalhei em um banco de dados utilizando WinThor.',
-                from: '2017-08-01T00:00:00.000+00:00',
-                to: '2018-02-01T00:00:00.000+00:00',
-                currentlyEmployed: true,
-            },
-        ],
+        skillCategory: [],
+        experience: [],
+    }
+
+    componentDidMount = () => {
+        axios.get('/api/education')
+            .then(res => {
+                this.setState({ education: res.data })
+            })
+            .catch(err => console.error(err));
+
+        axios.get('/api/skills')
+            .then(res => {
+                this.setState({ skillCategory: res.data });
+            })
+            .catch(err => console.error(err));
+
+        axios.get('/api/experiences')
+            .then(res => {
+                this.setState({ experience: res.data });
+            })
+            .catch(err => console.error(err));
     }
 
     render() {
