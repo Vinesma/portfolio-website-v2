@@ -1,0 +1,48 @@
+/* CONTAINERS */
+
+.container {
+    padding: 0.5rem 0.6rem;
+    background-color: $main-color;
+    border: none;
+
+    @media only screen and (max-width: $medium-screen) {
+        width: 100%;
+    }
+}
+
+.container-no-bg {
+    @extend .container;
+    padding: 0;
+    background-color: transparent;
+}
+
+.inline {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    background-color: transparent;
+    padding: 0;
+}
+
+.inline .container,.inline .container-no-bg{
+    width: 98%;
+
+    @media only screen and (max-width: $medium-screen) {
+        width: 96%;
+    }
+}
+
+.section-title {
+    @include sec-font;
+    @extend .container;
+    margin-bottom: 0.5rem;
+    cursor: auto;
+}
+
+.width-full{
+    width: 100%;
+}
+
+.add-pad{
+    padding: 0.3rem;
+}

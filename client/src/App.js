@@ -120,6 +120,11 @@ class App extends Component {
               <Resume language={'PT'} />
             </Route>
             <Route>
+              <Header 
+              headerItems={ this.state.headerItems }
+              headerTitle={ this.state.headerTitle }
+              updateHeaderItems={ this.updateHeaderItems }
+              />
               <PageError />
             </Route>
           </Switch>

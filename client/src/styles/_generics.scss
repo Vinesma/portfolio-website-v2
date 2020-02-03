@@ -1,52 +1,14 @@
-/* GENERICS */
+/* BUTTONS */
 
-/* containers */
-
-.container {
-    padding: 0.5rem 0.6rem;
-    background-color: $main-color;
-    border: none;
-
-    @media only screen and (max-width: $medium-screen) {
-        width: 100%;
-    }
-}
-
-.container-no-bg {
-    @extend .container;
-    padding: 0;
-    background-color: transparent;
-}
-
-.inline {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-    background-color: transparent;
-    padding: 0;
-}
-
-.inline .container,.inline .container-no-bg{
-    width: 98%;
-
-    @media only screen and (max-width: $medium-screen) {
-        width: 96%;
-    }
-}
-
-.section-title {
+.button-hover-left {
+    @extend .container,.width-full;
+    @extend .flex,.flex.vertical-align-center;
     @include sec-font;
-    @extend .container;
-    margin-bottom: 0.5rem;
-    cursor: auto;
+    cursor: pointer;
 }
 
-.width-full{
-    width: 100%;
-}
-
-.add-pad{
-    padding: 0.3rem;
+.button-hover-left:hover {
+    @include border-left-h;
 }
 
 /* SECTION */
@@ -65,11 +27,19 @@ section.pushdown {
 
 /* FLEX */
 
-.flex{
+.flex {
     display: flex;
 }
 
-.flex.vertical-align-center{
+.flex.column {
+    flex-direction: column;
+}
+
+.flex.wrap {
+    flex-wrap: wrap;
+}
+
+.flex.vertical-align-center {
     align-items: center;
 }
 
@@ -79,6 +49,14 @@ section.pushdown {
 
 .flex.between-align {
     justify-content: space-between;
+}
+
+.flex-1 {
+    flex: 1 49%;
+}
+
+.flex-2 {
+    flex: 2 60%;
 }
 
 /* POSITIONING */
@@ -107,16 +85,44 @@ section.pushdown {
     }
 }
 
+.space-left-small {
+    margin-left: 0.5rem;
+}
+
+.space-left-med {
+    margin-left: 1rem;
+}
+
+.space-left-big {
+    margin-left: 1.5rem;
+}
+
 .space-top-section-small {
     margin-top: 2vh;
 }
 
 .space-top-section-med {
     margin-top: 7vh;
+
+    @media only screen and (max-width: $medium-screen) {
+        margin-top: 5vh;
+    }
 }
 
 .space-top-section-big {
     margin-top: 10vh;
+
+    @media only screen and (max-width: $medium-screen) {
+        margin-top: 5vh;
+    }
+}
+
+.space-top-section-huge {
+    margin-top: 20vh;
+
+    @media only screen and (max-width: $medium-screen) {
+        margin-top: 10vh;
+    }
 }
 
 /* BORDERS */
@@ -157,6 +163,22 @@ i {
     margin-right: 0.5rem;
 }
 
+.fa-github {
+    margin-right: .6rem;
+}
+
+.fa-linkedin {
+    margin-right: .8rem;
+}
+
+.fa-twitter {
+    margin-right: .5rem;
+}
+
+.fa-deviantart {
+    margin-right: 1.4rem;
+}
+
 /*primary*/
 .p-icon{
     color: $sec-color;
@@ -168,4 +190,51 @@ i {
 /*unimportant*/
 .u-icon{
     color: $text-color;
+}
+
+/* IMAGES */
+
+img.profile {
+    max-width: 100%;
+    height: 100%;
+
+    @media only screen and (max-width: $transition-screen) {
+        width: 100%;
+    }
+}
+
+img.box-image{
+    display: block;
+    max-height: 12rem;
+    width: auto;
+    height: auto;
+    padding: 0.3rem;
+    background-color: $main-color;
+    cursor: zoom-in;
+
+    &:hover{
+        @include color-change-sec;
+    }
+}
+
+/* RESPONSIVE */
+
+.flex.responsive-column {
+    @media only screen and (max-width: $medium-screen) {
+        flex-direction: column;
+    }
+}
+
+.responsive-column .space-left-small,
+.responsive-column .space-left-med,
+.responsive-column .space-left-big {
+    @media only screen and (max-width: $medium-screen) {
+        margin: 0;
+    } 
+}
+
+.responsive-column .button-hover-left {
+    @media only screen and (max-width: $medium-screen) {
+        margin-top: 0.5rem;
+    }
 }

@@ -55,7 +55,11 @@ export default class Skills extends Component {
                     </div>
                     }
                     { this.state.experience.map(experience => (
-                        <ExperienceSection key={experience._id} experience={experience} />
+                        <ExperienceSection
+                        key={experience._id}
+                        experience={experience}
+                        language={ 'EN' }
+                        />
                     )) 
                     }
                 </section>

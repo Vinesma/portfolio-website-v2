@@ -21,10 +21,17 @@ export default function SkillSection(props) {
                             { skill.name }
                         </div>
                         <div>
-                            { skill.proficiency === 3 ? 'Advanced'
-                            : skill.proficiency === 2 ? 'Intermediary'
-                            : skill.proficiency === 1 ? 'Basic' 
-                            : null
+                            { language === 'EN'
+                            ?
+                                  skill.proficiency === 3 ? 'Advanced'
+                                : skill.proficiency === 2 ? 'Intermediary'
+                                : skill.proficiency === 1 ? 'Basic' 
+                                : null
+                            :
+                                  skill.proficiency === 3 ? 'Avançado'
+                                : skill.proficiency === 2 ? 'Intermediário'
+                                : skill.proficiency === 1 ? 'Básico'
+                                : null
                             }
                         </div>
                         { alternateColor = !alternateColor }
