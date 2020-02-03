@@ -2,17 +2,25 @@ import React from 'react';
 
 export default function UserData(props){
     const language = props.language;
-
     const userData = props.personalData;
     const education = props.education;
     
     const nationality = language === 'EN' ? userData.nationality : userData.nationality_pt;
     const maritalStatus = language === 'EN' ? userData.maritalStatus : userData.maritalStatus_pt;
-    const age = language === 'EN' ? userData.age + ' years old' : userData.age + ' anos';
 
     function dateConvert(date){
         const newDate = new Date(date);
         return  newDate.getMonth().toString() + '/' + newDate.getFullYear().toString();
+    }
+
+    function calculateAge(yearOfBirth){
+        const currentYear = new Date().getFullYear();
+        let age = currentYear - yearOfBirth;
+
+        //This is a hack, don't tell anyone...
+        age -= 1;
+
+        return language === 'EN' ? age + ' years old' : age + ' anos';
     }
 
     return(
@@ -24,7 +32,9 @@ export default function UserData(props){
             <div className="inline">
                 <div className="container">
                     <h3>{ userData.name }</h3>
-                    <p className="space-top-small">{ nationality }, { maritalStatus }, { age }</p>
+                    <p 
+                    className="space-top-small"
+                    >{ nationality }, { maritalStatus }, { calculateAge(userData.yearOfBirth) }</p>
                     <div className="space-top-big flex vertical-align-center">
                         <i className="fas fa-map-marker-alt s-icon"></i>
                         <span className="left-solid-border-l">
@@ -59,8 +69,8 @@ export default function UserData(props){
                 <h4>{ language === 'EN' ? 'Education' : 'Formação' }</h4>
             </div>
             <div className="inline">
-                { education.map((educationItem, index) => (
-                    <div className={ index > 0 ? 'container space-top-med' : 'container'}>
+                { education.map(educationItem => (
+                    <div className="container">
                         <div className="flex vertical-align-center">
                         <i className="fas fa-square-full s-icon"></i>
                         <span className="left-solid-border-l width-full">

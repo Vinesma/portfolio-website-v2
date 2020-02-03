@@ -6,37 +6,26 @@ import axios from 'axios';
 
 class Resume extends Component {
     state = {
-        personalData: {
-            name: 'Otavio Cornelio da Silva',
-            nationality: 'Brazilian',
-            nationality_pt: 'Brasileiro',
-            maritalStatus: 'Single',
-            maritalStatus_pt: 'Solteiro',
-            age: 22,
-            address: 'Rua Edmundo Fernando Souza, Térreo, Nº 228, Cohab IV – CEP 56310-605',
-            city: 'Petrolina',
-            state: 'Pernambuco',
-            homePhone: '(87) 3861-5612',
-            cellPhone: '(87) 98806-6718',
-            email: 'vinesma.work@gmail.com',
-            website: 'https://github.com/Vinesma'            
-        },
+        personalData: [],
         education: [],
-        others: [
-            {
-                description: 'Driver\'s licence',
-                description_pt: 'Carteira de Habilitação, tipo B'
-            },
-            {
-                description: 'Driver\'s licence',
-                description_pt: 'Carteira de Habilitação, tipo B'
-            },
-        ],
+        others: [],
         skillCategory: [],
         experience: [],
     }
 
     componentDidMount = () => {
+        axios.get('/api/userdata')
+            .then(res => {
+                this.setState({ personalData: res.data })
+            })
+            .catch(err => console.error(err));
+
+        axios.get('/api/other')
+            .then(res => {
+                this.setState({ others: res.data })
+            })
+            .catch(err => console.error(err));
+
         axios.get('/api/education')
             .then(res => {
                 this.setState({ education: res.data })
@@ -68,11 +57,14 @@ class Resume extends Component {
         </div>
         <section className="space-top-section-big pad">
             <section className="pad">
-                <UserData
-                personalData={ this.state.personalData }
-                education={ this.state.education }
-                language={ language }
-                />
+                { this.state.personalData.map(user => (
+                    <UserData
+                    personalData={ user }
+                    education={ this.state.education }
+                    language={ language }
+                    />
+                ))
+                }
             </section>
             <section className="space-top-section-med pad">
                 <div className="section-title flex left-aligned left-solid-border space-top-big">

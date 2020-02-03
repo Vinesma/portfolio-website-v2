@@ -27,6 +27,8 @@ Technologies used:
 
 /api/experiences -> get/post work experiences.
 
+/api/education -> get/post education.
+
 For more control, use the python script. You can add/modify and even remove items from the entire database.
 
 ## Hosting:
@@ -42,7 +44,7 @@ For more control, use the python script. You can add/modify and even remove item
 
 ### Configs:
 
-./config/default.json -> Holds the mongoDB connection string: { "dbString" }
+./config/default.json -> Holds the mongoDB connection string: { "dbString" } (Make sure it's fetching from 'Portfolio' instead of 'test' db, took me a while to figure out why the site wasn't displaying anything despite no errors being shown)
 
 ./config/clientID.json -> Holds the Imgur clientID: { "clientID" }
 
