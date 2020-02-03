@@ -2,6 +2,7 @@ import React from 'react'
 
 export default function SkillSection(props) {
     const skillCategory = props.skillCategory;
+    const language = props.language;
     let alternateColor = true;
 
     return (
@@ -9,7 +10,7 @@ export default function SkillSection(props) {
             <div className="category-title">
                 <div>
                     { skillCategory.icon !== '' ? <i className={ skillCategory.icon }></i> : null }
-                    { skillCategory.name }
+                    { language === 'EN' ? skillCategory.name : skillCategory.name_pt }
                 </div>
             </div>
             <div className="title-group">

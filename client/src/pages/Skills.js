@@ -34,23 +34,25 @@ export default class Skills extends Component {
     render() {
         return (
             <>
-                <section className="skills-section">
+                <section className="skills-section pad space-top-section-med">
                     { this.state.loadingSkills ? <Loader /> : null }
                     { this.state.skillCategory.map(skillCategory => (
-                        <SkillSection key={skillCategory._id} skillCategory={skillCategory}/>
+                        <SkillSection
+                        key={skillCategory._id}
+                        skillCategory={skillCategory}
+                        language={ 'EN' }
+                        />
                     ))
                     }
                 </section>
-                <section className="experience-section">                    
+                <section className="pad pushdown">
                     { this.state.loadingExperiences
                     ? null
                     :
-                    <div className="experience-section-title">
-                        <div>
-                            <i className="fas fa-briefcase"></i>
-                            Work Experience
-                        </div>
-                    </div> 
+                    <div className="section-title flex left-aligned left-solid-border space-top-big">
+                        <i className="fas fa-briefcase"></i>
+                        <h4>Work Experience</h4>
+                    </div>
                     }
                     { this.state.experience.map(experience => (
                         <ExperienceSection key={experience._id} experience={experience} />

@@ -11,6 +11,7 @@ Skill.add({
 
 let SkillCategory = new Schema({
     name: { type: String, required: true },
+    name_pt: { type: String, required: true },
     icon: { type: String, default: "" },
     skillList: [ Skill ],
 });

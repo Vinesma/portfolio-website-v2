@@ -58,7 +58,7 @@ export default class Gallery extends Component {
 
     render(){
         return (
-            <section className="gallery-section">
+            <section className="gallery-section pad space-top-section-med pushdown">
                 { this.state.loading ? <Loader /> : null }
                 <div id="top" className="gallery-section-nav">
                     {

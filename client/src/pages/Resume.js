@@ -77,6 +77,7 @@ class Resume extends Component {
                             <SkillSection
                             key={skillCategory._id}
                             skillCategory={skillCategory}
+                            language={ language }
                             />
                         ))
                         }

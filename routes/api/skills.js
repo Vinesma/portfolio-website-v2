@@ -14,6 +14,7 @@ router.get('/', (req, res) => {
     { $group : {
         _id: '$_id',
         name: { $last : '$name' },
+        name_pt: { $last : '$name_pt' },
         icon: { $last : '$icon' },
         skillList: { $push : '$skillList' }} }])
     .then(skillCategory => res.json(skillCategory));
@@ -26,6 +27,7 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
     const newSkill = new SkillCategory({
         name: req.body.name,
+        name_pt: req.body.name_pt,
         icon: req.body.icon,
         skillList: req.body.skillList,
     });

@@ -35,7 +35,7 @@ export default class Projects extends Component {
 
     render() {
         return (
-            <section className="projects-section">
+            <section className="projects-section pad space-top-section-med">
                 { this.state.loading ? <Loader /> : null }
                 <div className="projects-section-group">
                     { this.state.repositories.map(repository => (
