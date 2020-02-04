@@ -29,6 +29,10 @@ Technologies used:
 
 /api/education -> get/post education.
 
+/api/userdata -> get/post userdata.
+
+/api/other -> get/post other.
+
 For more control, use the python script. You can add/modify and even remove items from the entire database.
 
 ## Hosting:
