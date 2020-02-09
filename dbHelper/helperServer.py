@@ -3,16 +3,10 @@ import pymongo, json, os, sys, datetime, pprint
 sys.path.append(os.path.abspath(os.path.join('.', 'classes')))
 
 from classes.workExperience import WorkExperience
+from classes.skillCategory import SkillCategory
+from classes.imageCategory import ImageCategory
 
-from collectionHandlers import (
-    listAllDocuments,
-    insertDocument,
-    findDocument,
-    modifyDocument,
-    removeDocument
-)
-
-from classes.helperFunctions import (
+from classes.helpers.functions import (
     clearScreen,
     presentChoice,
     presentChoiceString,
@@ -51,65 +45,13 @@ while True:
     choice = presentChoice()
     if choice == 1:
         workExperience = WorkExperience('Work Experience', 'experiences', database)
-        workExperience.listAllDocuments()
+        workExperience.showOptions()
     elif choice == 2:
-        while choice != 6:
-            print("\n-- SKILL CATEGORIES --\n")
-            print("1. List all skill categories.")
-            print("2. Find a skill category.")
-            print("3. Add a new skill category.")
-            print("4. Modify an existing skill category.")
-            print("5. Remove a skill category.")
-            print("6. Go back to all collections.")
-            print("7. Exit program.")
-
-            choice = presentChoice()
-            if choice == 1:
-                listAllDocuments(database, 'skillcategories')
-            elif choice == 2:
-                findDocument(database, 'skillcategories')
-            elif choice == 3:
-                insertDocument(database, 'skillcategories')
-            elif choice == 4:
-                modifyDocument(database, 'skillcategories')
-            elif choice == 5:
-                removeDocument(database, 'skillcategories')
-            elif choice == 6:
-                clearScreen()
-            elif choice == 7:
-                print("Exiting...")
-                sys.exit()
-            else:
-                print("\nERROR : Invalid option.")
+        skillCategory = SkillCategory('Skill Categories', 'skillcategories', datetime)
+        skillCategory.showOptions()
     elif choice == 3:
-        while choice != 6:
-            print("\n-- IMAGE CATEGORIES --\n")
-            print("1. List all image categories.")
-            print("2. Find an image category.")
-            print("3. Add a new image category.")
-            print("4. Modify an existing image category.")
-            print("5. Remove an image category.")
-            print("6. Go back to all collections.")
-            print("7. Exit program.")
-
-            choice = presentChoice()
-            if choice == 1:
-                listAllDocuments(database, 'imagecategories')
-            elif choice == 2:
-                findDocument(database, 'imagecategories')
-            elif choice == 3:
-                insertDocument(database, 'imagecategories')
-            elif choice == 4:
-                modifyDocument(database, 'imagecategories')
-            elif choice == 5:
-                removeDocument(database, 'imagecategories')
-            elif choice == 6:
-                clearScreen()
-            elif choice == 7:
-                print("Exiting...")
-                sys.exit()
-            else:
-                print("\nERROR : Invalid option.")
+        imageCategory = ImageCategory('Image Categories', 'imagecategories', database)
+        imageCategory.showOptions()
     elif choice == 4:
         print("Exiting...")
         sys.exit()

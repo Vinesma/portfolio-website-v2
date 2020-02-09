@@ -1,6 +1,6 @@
 import requests, re, os, json, shutil, base64, bson
 
-from helperFunctions import (
+from classes.helpers.functions import (
     presentChoiceString
 )
 

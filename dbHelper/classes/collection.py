@@ -5,7 +5,7 @@ from abc import (
     abstractmethod
 )
 
-from helperFunctions import (
+from classes.helpers.functions import (
     clearScreen,
     presentChoice,
     presentChoiceString,

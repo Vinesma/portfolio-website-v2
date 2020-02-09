@@ -23,7 +23,11 @@ def waitForInput(clear):
 
 def handleDates(value):
     try:
-        return datetime.datetime.fromisoformat(value)
+        dateString = value.split('-')
+        return datetime.datetime(
+            int(dateString[0]),
+            int(dateString[1]),
+            int(dateString[2])).isoformat()
     except Exception as err:
         print("\nERROR : {}".format(err))
         return
