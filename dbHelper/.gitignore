@@ -1,0 +1,4 @@
+# pycache
+__pycache__/
+classes/__pycache__
+classes/helpers/__pycache__
