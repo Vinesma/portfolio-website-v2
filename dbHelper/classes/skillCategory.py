@@ -20,6 +20,8 @@ class SkillCategory(Collection):
         print("\n* ADDING A NEW SKILL CATEGORY:")
         print(" * name:")
         name = presentChoiceString()
+        print(" * name (Portuguese):")
+        name_pt = presentChoiceString()
         print(" * icon:")
         icon = presentChoiceString()
         print(" * Add skills? (Y/N)")
@@ -40,6 +42,7 @@ class SkillCategory(Collection):
         
         newSkillCategory = {
             "name" : name,
+            "name_pt" : name_pt,
             "icon" : icon,
             "skillList" : skillList
         }

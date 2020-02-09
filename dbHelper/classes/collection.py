@@ -15,6 +15,7 @@ from classes.helpers.functions import (
 )
 
 class Collection(ABC):
+    """ Base class for a collection """
 
     def __init__(self, name, workName, database):
         self.name = name

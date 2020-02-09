@@ -1,6 +1,4 @@
-import pymongo, json, os, sys, datetime, pprint
-
-sys.path.append(os.path.abspath(os.path.join('.', 'classes')))
+import pymongo, json, os, sys
 
 from classes.workExperience import WorkExperience
 from classes.skillCategory import SkillCategory
@@ -47,7 +45,7 @@ while True:
         workExperience = WorkExperience('Work Experience', 'experiences', database)
         workExperience.showOptions()
     elif choice == 2:
-        skillCategory = SkillCategory('Skill Categories', 'skillcategories', datetime)
+        skillCategory = SkillCategory('Skill Categories', 'skillcategories', database)
         skillCategory.showOptions()
     elif choice == 3:
         imageCategory = ImageCategory('Image Categories', 'imagecategories', database)
