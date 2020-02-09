@@ -1,5 +1,9 @@
 import pymongo, json, os, sys, datetime, pprint
 
+sys.path.append(os.path.abspath(os.path.join('.', 'classes')))
+
+from classes.workExperience import WorkExperience
+
 from collectionHandlers import (
     listAllDocuments,
     insertDocument,
@@ -8,7 +12,7 @@ from collectionHandlers import (
     removeDocument
 )
 
-from helperFunctions import (
+from classes.helperFunctions import (
     clearScreen,
     presentChoice,
     presentChoiceString,
@@ -46,34 +50,7 @@ while True:
 
     choice = presentChoice()
     if choice == 1:
-        while choice != 6:
-            print("\n-- WORK EXPERIENCE --\n")
-            print("1. List all experiences.")
-            print("2. Find an experience.")
-            print("3. Add a new experience.")
-            print("4. Modify an existing experience.")
-            print("5. Remove an experience.")
-            print("6. Go back to all collections.")
-            print("7. Exit program.")
-
-            choice = presentChoice()
-            if choice == 1:
-                listAllDocuments(database, 'experiences')
-            elif choice == 2:
-                findDocument(database, 'experiences')
-            elif choice == 3:
-                insertDocument(database, 'experiences')
-            elif choice == 4:
-                modifyDocument(database, 'experiences')                
-            elif choice == 5:
-                removeDocument(database, 'experiences')
-            elif choice == 6:
-                clearScreen()
-            elif choice == 7:
-                print("Exiting...")
-                sys.exit()
-            else:
-                print("\nERROR : Invalid option.")
+        collection = WorkExperience('Work Experience', 'experiences', database)
     elif choice == 2:
         while choice != 6:
             print("\n-- SKILL CATEGORIES --\n")
