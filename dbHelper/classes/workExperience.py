@@ -1,6 +1,6 @@
 from collection import Collection
 
-class WorkExperience:
+class WorkExperience(Collection):
 
     def __init__(self, name, workName, database):
         super.__init__(name)

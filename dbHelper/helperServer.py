@@ -50,7 +50,8 @@ while True:
 
     choice = presentChoice()
     if choice == 1:
-        collection = WorkExperience('Work Experience', 'experiences', database)
+        workExperience = WorkExperience('Work Experience', 'experiences', database)
+        workExperience.listAllDocuments()
     elif choice == 2:
         while choice != 6:
             print("\n-- SKILL CATEGORIES --\n")
