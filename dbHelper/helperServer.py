@@ -1,17 +1,7 @@
 import pymongo, json, os, sys
 
-from classes.workExperience import WorkExperience
-from classes.skillCategory import SkillCategory
-from classes.imageCategory import ImageCategory
-
-from classes.helpers.functions import (
-    clearScreen,
-    presentChoice,
-    presentChoiceString,
-    waitForInput,
-    handleDates,
-    handleBool
-)
+from controller import Controller
+from classes.helpers.functions import presentChoice
 
 try:
     with open(os.path.join("..", "config", "default.json"), "r") as readFile:
@@ -23,6 +13,7 @@ except FileNotFoundError as err:
 client = pymongo.MongoClient(connectionString["dbString"])
 database = client.Portfolio
 collectionList = database.list_collection_names()
+controller = Controller(database)
 count = 1
 
 # START
@@ -34,24 +25,6 @@ while True:
         print("{} : {}".format(count, collection))
         count += 1
     count = 1
-    print("\nWhat collection you want to work with today?\n")
-    print("1. Work Experiences.")
-    print("2. Skills Categories.")
-    print("3. Image Categories.")
-    print("4. Exit program.")
-
+    controller.showMenu()
     choice = presentChoice()
-    if choice == 1:
-        workExperience = WorkExperience('Work Experience', 'experiences', database)
-        workExperience.showOptions()
-    elif choice == 2:
-        skillCategory = SkillCategory('Skill Categories', 'skillcategories', database)
-        skillCategory.showOptions()
-    elif choice == 3:
-        imageCategory = ImageCategory('Image Categories', 'imagecategories', database)
-        imageCategory.showOptions()
-    elif choice == 4:
-        print("Exiting...")
-        sys.exit()
-    else:
-        print("\nERROR : Invalid option.")
+    controller.pickCollection(choice)
