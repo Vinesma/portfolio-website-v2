@@ -5,9 +5,11 @@ from classes.skillCategory import SkillCategory
 from classes.imageCategory import ImageCategory
 from classes.education import Education
 from classes.other import Other
+from classes.userData import UserData
 
 class Controller:
     collection = None
+    exitNumber = 7
 
     def __init__(self, database):
         self.database = database
@@ -34,6 +36,10 @@ class Controller:
                 self.collection = Other('Other', 'others', self.database)
             self.collection.showOptions()
         elif option == 6:
+            if not isinstance(self.collection, UserData):
+                self.collection = UserData('User Data', 'userdatas', self.database)
+            self.collection.showOptions()
+        elif option == self.exitNumber:
             print("Exiting...")
             sys.exit()
         else:
@@ -46,7 +52,8 @@ class Controller:
         print("3. Image Categories.")
         print("4. Education.")
         print("5. Other.")
-        print("6. Exit program.")
+        print("6. User Data.")
+        print("{}. Exit program.".format(self.exitNumber))
 
 
 

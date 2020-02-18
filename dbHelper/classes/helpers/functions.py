@@ -36,3 +36,10 @@ def handleBool():
     choice = presentChoiceString()
     choice = True if choice == 'y' else False
     return choice
+
+def handleYear():
+    year = presentChoice()
+    if year > 9999 or year < 1900:
+        print("\nERROR : This year is not supported (Number too large or too small)")
+        year = 1997
+    return year
